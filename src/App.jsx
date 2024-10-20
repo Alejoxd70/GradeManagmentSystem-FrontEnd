@@ -18,6 +18,7 @@ import Grade from "./pages/Admin/Grade"
 import User from './pages/Admin/User';
 import Profile from './pages/Admin/Profile';
 import UserForm from './pages/Admin/UserForm';
+import SubjectForm from './pages/Admin/SubjectForm';
 
 
 function App() {
@@ -42,7 +43,12 @@ function App() {
 
                         <Route path='/admin/courses' element={<Courses/>}/>
                         <Route path='/admin/register-students' element={<RegisterStudent/>}/>
-                        <Route path='/admin/subjects' element={<Subject/>}/>
+
+                        {/*subjects*/}
+                        <Route path='/admin/Subject' element={<Subject/>}/>
+                        <Route path='/admin/Subject/create' element={<SubjectForm/>}/>
+                        <Route path='/admin/Subject/edit/:id' element={<SubjectForm/>}/>
+                        
                         <Route path='/admin/register-teachers' element={<RegisterTeacher/>}/>
                         <Route path='/admin/assignments' element={<Assignments/>}/>
                         <Route path='/admin/grades' element={<Grade/>}/>
