@@ -34,9 +34,6 @@ const Login = () => {
 
     return (
         <>
-
-
-
             <div className="col-md-10 shadow-lg p-5 mb-5 bg-dark text-light rounded-5 w-100 mx-auto">
                 <Form noValidate validated={validated} onSubmit={handleSubmit} className="bg-dark p-4 rounded-4">
                     <h1 className="text-center mb-4 text-light">Login</h1>
@@ -85,8 +82,6 @@ const Login = () => {
                     {message.text && <Message message={message} />}
                 </Form>
             </div>
-
-
 
         </>
     );

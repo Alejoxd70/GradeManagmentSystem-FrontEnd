@@ -3,7 +3,7 @@
 const Assignments = () => {
     return(
         <>
-            <h1>Asignaciones</h1>
+            <h1 className="text-center text-light mt-4">Asignaciones</h1>
         </>
     );
 }

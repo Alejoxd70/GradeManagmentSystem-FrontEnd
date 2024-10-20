@@ -2,7 +2,7 @@
 const Subject = () => {
     return (
         <>
-            <h1>Materias</h1>
+            <h1 className="text-center text-light mt-4">Materias</h1>
         </>
     )
 }

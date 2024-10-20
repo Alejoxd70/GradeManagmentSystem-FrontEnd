@@ -2,7 +2,7 @@
 const Group = () => {
     return(
         <>
-            <h1>Grupos</h1>
+            <h1 className="text-center text-light mt-4">Grupos</h1>
         </>
     );
 }

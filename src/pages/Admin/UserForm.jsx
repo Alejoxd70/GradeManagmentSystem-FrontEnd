@@ -264,9 +264,6 @@ const UserForm = () => {
                     {message.text && <Message message={message} />}
                 </Form>
             </div>
-           
-
-
 
         </>
     );
