@@ -25,7 +25,7 @@ const SideNavBar = () => {
                     </Nav.Item>
 
                     <Nav.Item className="nav-item">
-                        <Nav.Link className="nav-link text-white" eventKey="registerTeacher"as={Link} to={"/admin/register-teachers"}><i className="bi bi-person-workspace mx-2"></i>Matricular Profesores</Nav.Link>
+                        <Nav.Link className="nav-link text-white" eventKey="registerTeacher"as={Link} to={"/admin/RegisterTeacher"}><i className="bi bi-person-workspace mx-2"></i>Matricular Profesores</Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item className="nav-item">
@@ -33,7 +33,7 @@ const SideNavBar = () => {
                     </Nav.Item>
 
                     <Nav.Item className="nav-item">
-                        <Nav.Link className="nav-link text-white" eventKey="grades"as={Link} to={"/admin/grades"}><i className="bi bi-journal-check mx-2"></i>Notas</Nav.Link>
+                        <Nav.Link className="nav-link text-white" eventKey="grades"as={Link} to={"/admin/Grade"}><i className="bi bi-journal-check mx-2"></i>Notas</Nav.Link>
                     </Nav.Item>
                 </div>
                 
