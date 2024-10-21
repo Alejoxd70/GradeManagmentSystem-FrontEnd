@@ -22,6 +22,8 @@ import UserForm from './pages/Admin/UserForm';
 import SubjectForm from './pages/Admin/SubjectForm';
 
 import GroupForm from './pages/Admin/GroupForm';
+import RegisterStudentForm from './pages/Admin/RegisterStudentForm';
+import AssignmentsForm from './pages/Admin/AssignmentsForm';
 
 
 function App() {
@@ -48,7 +50,9 @@ function App() {
                         <Route path='/admin/groups/create' element={<GroupForm/>}/>
                         <Route path='/admin/groups/edit/:id' element={<GroupForm/>}/>
 
-                        <Route path='/admin/register-students' element={<RegisterStudent/>}/>
+                        <Route path='/admin/groupYears' element={<RegisterStudent/>}/>
+                        <Route path='/admin/groupYears/create' element={<RegisterStudentForm/>}/>
+                        <Route path='/admin/groupYears/edit/:id' element={<RegisterStudentForm/>}/>
 
                         {/*subjects*/}
                         <Route path='/admin/Subject' element={<Subject/>}/>
@@ -56,7 +60,11 @@ function App() {
                         <Route path='/admin/Subject/edit/:id' element={<SubjectForm/>}/>
                         
                         <Route path='/admin/register-teachers' element={<RegisterTeacher/>}/>
+                        
                         <Route path='/admin/assignments' element={<Assignments/>}/>
+                        <Route path='/admin/assignments/create' element={<AssignmentsForm/>}/>
+                        <Route path='/admin/assignments/edit/:id' element={<AssignmentsForm/>}/>
+
                         <Route path='/admin/grades' element={<Grade/>}/>
                         <Route path='/admin/profile' element={<Profile/>} />
                     </Route>

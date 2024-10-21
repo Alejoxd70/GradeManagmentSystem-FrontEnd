@@ -97,7 +97,7 @@ const GroupForm = () => {
         <h1 className="text-center text-light mt-4">GroupForm</h1>
         <div className="col-md-10 shadow-lg p-5 mb-5 bg-dark text-light rounded-5 w-50 mx-auto mt-4">
               <Form noValidate validated={validated} onSubmit={handleSubmit} className="bg-dark p-3 rounded-4" method="post">
-                    <h1 className="text-center mb-4 text-light">{id ? "Actualizar" : "Crear"} un Grupo 💀</h1>
+                    <h1 className="text-center mb-4 text-light">{id ? "Actualizar" : "Crear"} un Grupo </h1>
 
                     <Form.Group className="d-flex justify-content-between align-items-center mb-3" controlId="controlName">
                         <Form.Label className="w-25 mb-0 text-light">Nombre del grupo</Form.Label>

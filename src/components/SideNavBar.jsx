@@ -17,7 +17,7 @@ const SideNavBar = () => {
                     </Nav.Item>
 
                     <Nav.Item>
-                        <Nav.Link className="nav-link text-white" eventKey="registerStudent"as={Link} to={"/admin/register-students"}><i className="bi bi-backpack2 mx-2"></i>Matricular Estudiantes</Nav.Link>
+                        <Nav.Link className="nav-link text-white" eventKey="registerStudent"as={Link} to={"/admin/groupYears"}><i className="bi bi-backpack2 mx-2"></i>Matricular Estudiantes</Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item className="nav-item">
