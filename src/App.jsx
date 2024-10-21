@@ -18,6 +18,10 @@ import Grade from "./pages/Admin/Grade"
 import User from './pages/Admin/User';
 import Profile from './pages/Admin/Profile';
 import UserForm from './pages/Admin/UserForm';
+import StudentLayout from './layout/StudentLayout';
+import StudentGroup from './pages/student/StudentGroup.jsx';
+import TeacherLayout from './layout/TeacherLayout.jsx';
+import TeacherGroup from './pages/teacher/TeacherGroup.jsx';
 import GradeForm from './pages/Admin/GradeForm';
 import SubjectForm from './pages/Admin/SubjectForm';
 import SubjectTeacherForm from './pages/Admin/SubjectTeacherForm';
@@ -28,18 +32,16 @@ import AssignmentsForm from './pages/Admin/AssignmentsForm';
 
 function App() {
     
-
-
     return (
         <>
             <BrowserRouter>
                 <Routes>
-
                     <Route path='/' element={<LoginLayout/>}>
                         <Route index element={<Login/>}/>
                         <Route path='forgot-password' element={<ForgotPassword/>}/>
                     </Route>
 
+                    {/* ADMIN ROUTES */}
                     <Route path="/admin" element={<AdminLayout/>} >
                         {/* User */}
                         <Route path='/admin/users' element={<User/>}/>
@@ -59,30 +61,36 @@ function App() {
                         <Route path='/admin/Subject/create' element={<SubjectForm/>}/>
                         <Route path='/admin/Subject/edit/:id' element={<SubjectForm/>}/>
 
-                        
-                        <Route path='/admin/register-teachers' element={<RegisterTeacher/>}/>
+             
                         
                         <Route path='/admin/assignments' element={<Assignments/>}/>
                         <Route path='/admin/assignments/create' element={<AssignmentsForm/>}/>
                         <Route path='/admin/assignments/edit/:id' element={<AssignmentsForm/>}/>
 
-                        <Route path='/admin/grades' element={<Grade/>}/>
 
                         {/*subjectteachers*/}
                         <Route path='/admin/RegisterTeacher' element={<RegisterTeacher/>}/>
                         <Route path='/admin/RegisterTeacher/create' element={<SubjectTeacherForm/>}/>
                         <Route path='/admin/RegisterTeacher/edit/:id' element={<SubjectTeacherForm/>}/>
 
-
-                        <Route path='/admin/assignments' element={<Assignments/>}/>
+                
                         {/*grades*/}
                         <Route path='/admin/Grade' element={<Grade/>}/>
                         <Route path='/admin/Grade/create' element={<GradeForm/>}/>
                         <Route path='/admin/Grade/edit/:id' element={<GradeForm/>}/>
 
 
-
                         <Route path='/admin/profile' element={<Profile/>} />
+                    </Route>
+
+                    {/* STUDENT ROUTES */}
+                    <Route path='/student' element={<StudentLayout/>}>
+                        <Route path='/student/groups' element={<StudentGroup/>}/>
+                    </Route>
+
+                    {/* TEACHER ROUTES */}
+                    <Route path='/teacher' element={<TeacherLayout/>}>
+                        <Route path='/teacher/groups' element={<TeacherGroup/>}/>
                     </Route>
                     
                 </Routes>
