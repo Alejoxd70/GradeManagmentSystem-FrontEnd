@@ -17,7 +17,7 @@ const SubjectForm = () => {
 
 
     const [formData, setFormData] = useState({
-        name: "",
+        subjectname: "",
         description: "",
     });
 
@@ -28,7 +28,7 @@ const SubjectForm = () => {
                 const getSubject = async () => {
                     const { data } = await axiosClient.get(`/Subject/${id}`);
                     const renewData = {
-                        name: data.subjectname,
+                        subjectname: data.subjectname,
                         description: data.description,
                     }
                     setFormData(renewData);
@@ -122,13 +122,13 @@ const SubjectForm = () => {
 
             <div className="col-md-10 shadow-lg p-5 mb-5 bg-dark text-light rounded-5 w-50 mx-auto mt-4">
                 <Form noValidate validated={validated} onSubmit={handleSubmit} className="bg-dark p-3 rounded-4" method="post">
-                    <h2 className="text-center mb-4 text-light">{id ? "Update" : "Create"} a Subject </h2>
+                    <h2 className="text-center mb-4 text-light">{id ? "Modificar" : "Crear"} una Materia </h2>
 
                     <Form.Group className="d-flex justify-content-between align-items-center mb-3" controlId="controlsubjectname">
                         <Form.Label className="w-25 mb-0 text-light">Materia</Form.Label>
                         <InputGroup hasValidation className="w-75">
                             <Form.Control
-                                name="name"
+                                name="subjectname"
                                 value={formData.subjectname}
                                 onChange={handleOnChange}
                                 type="text"

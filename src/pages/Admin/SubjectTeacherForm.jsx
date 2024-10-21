@@ -31,7 +31,7 @@ const SubjectTeacherForm = () => {
                 const getRegisterTeacher = async () => {
                     const { data } = await axiosClient.get(`/SubjectTeachers/${id}`);
                     const renewData = {
-                        teacher: data.teacher.id,
+                        teacherId: data.teacher.id,
                         subjectId: data.subject.id,
                         groupYearId: data.groupYear.id,
                     }
@@ -168,7 +168,7 @@ const SubjectTeacherForm = () => {
 
             <div className="col-md-10 shadow-lg p-5 mb-5 bg-dark text-light rounded-5 w-50 mx-auto mt-4">
                 <Form noValidate validated={validated} onSubmit={handleSubmit} className="bg-dark p-3 rounded-4" method="post">
-                    <h2 className="text-center mb-4 text-light">{id ? "Update" : "Create"} a Register Teacher 💀</h2>
+                    <h2 className="text-center mb-4 text-light">{id ? "Modificar" : "Crear"} Matricula de Profesor </h2>
 
                     <Form.Group className="d-flex justify-content-between align-items-center mb-3" controlId="controlTeacher">
                         <Form.Label className="w-25 mb-0 text-light">Profesor</Form.Label>

@@ -145,7 +145,7 @@ const GradeForm = () => {
 
             <div className="col-md-10 shadow-lg p-5 mb-5 bg-dark text-light rounded-5 w-50 mx-auto mt-4">
                 <Form noValidate validated={validated} onSubmit={handleSubmit} className="bg-dark p-3 rounded-4" method="post">
-                    <h2 className="text-center mb-4 text-light">{id ? "Update" : "Create"} a grade 💀</h2>
+                    <h2 className="text-center mb-4 text-light">{id ? "Modificar" : "Crear"} una calificacion </h2>
 
                     <Form.Group className="d-flex justify-content-between align-items-center mb-3" controlId="controlValue">
                         <Form.Label className="w-25 mb-0 text-light">Notas</Form.Label>
