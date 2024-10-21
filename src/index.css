@@ -25,48 +25,21 @@
     --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 }
 
-.custom-table-header {
-    background-color: #007bff; /* Green color */
+.accordion-button {
+    background-color: var(--bs-gray);
     color: white;
 }
-  
-.custom-table-header th {
-    padding: 15px;
-    text-align: left;
-    font-weight: 600;
-    text-align: center;
-}
 
-/* Body row styling */
-.custom-table tbody tr {
-    position: relative;
-    padding: 12px;
-    transition: background-color 0.3s;
-}
 
-/* Stylish separator */
-.custom-table tbody tr:not(:last-child):after {
-    content: "";
-    display: block;
-    height: 2px;
-    background-color: #007bff; /* Same color as header */
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-/* Hover effect */
-.custom-table tbody tr:hover {
-    background-color: rgba(40, 167, 69, 0.1); /* Light green on hover */
-}
-
-.custom-table td {
-    padding: 12px;
-    color: #333; /* Dark text color for contrast */
+.accordion-body {
+    background-color: var(--bs-gray-dark);
     color: white;
-    text-align: center;
 }
+
+
+
+
+
 
 
 

@@ -26,7 +26,6 @@ const User = () => {
             setLoading(false);
         } catch (error) {
             console.log(error);
-
         }
     }
 
