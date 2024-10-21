@@ -28,16 +28,16 @@ const SubjectTeacherForm = () => {
     useEffect(() => {
         if (id) {
             try {
-                const getRegisterTeachers = async () => {
+                const getRegisterTeacher = async () => {
                     const { data } = await axiosClient.get(`/SubjectTeachers/${id}`);
                     const renewData = {
-                        teacherId: data.teacherId,
-                        subjectId: data.subjectId,
-                        groupYearId: data.groupYearId,
+                        teacher: data.teacher.id,
+                        subjectId: data.subject.id,
+                        groupYearId: data.groupYear.id,
                     }
                     setFormData(renewData);
                 }
-                getRegisterTeachers();
+                getRegisterTeacher();
             } catch (error) {
                 console.log(error);
             }
