@@ -22,6 +22,8 @@ import GradeForm from './pages/Admin/GradeForm';
 import SubjectForm from './pages/Admin/SubjectForm';
 import SubjectTeacherForm from './pages/Admin/SubjectTeacherForm';
 import GroupForm from './pages/Admin/GroupForm';
+import RegisterStudentForm from './pages/Admin/RegisterStudentForm';
+import AssignmentsForm from './pages/Admin/AssignmentsForm';
 
 
 function App() {
@@ -48,12 +50,24 @@ function App() {
                         <Route path='/admin/groups/create' element={<GroupForm/>}/>
                         <Route path='/admin/groups/edit/:id' element={<GroupForm/>}/>
 
-                        <Route path='/admin/register-students' element={<RegisterStudent/>}/>
+                        <Route path='/admin/groupYears' element={<RegisterStudent/>}/>
+                        <Route path='/admin/groupYears/create' element={<RegisterStudentForm/>}/>
+                        <Route path='/admin/groupYears/edit/:id' element={<RegisterStudentForm/>}/>
 
                         {/*subjects*/}
                         <Route path='/admin/Subject' element={<Subject/>}/>
                         <Route path='/admin/Subject/create' element={<SubjectForm/>}/>
                         <Route path='/admin/Subject/edit/:id' element={<SubjectForm/>}/>
+
+                        
+                        <Route path='/admin/register-teachers' element={<RegisterTeacher/>}/>
+                        
+                        <Route path='/admin/assignments' element={<Assignments/>}/>
+                        <Route path='/admin/assignments/create' element={<AssignmentsForm/>}/>
+                        <Route path='/admin/assignments/edit/:id' element={<AssignmentsForm/>}/>
+
+                        <Route path='/admin/grades' element={<Grade/>}/>
+
                         {/*subjectteachers*/}
                         <Route path='/admin/RegisterTeacher' element={<RegisterTeacher/>}/>
                         <Route path='/admin/RegisterTeacher/create' element={<SubjectTeacherForm/>}/>
@@ -65,6 +79,7 @@ function App() {
                         <Route path='/admin/Grade' element={<Grade/>}/>
                         <Route path='/admin/Grade/create' element={<GradeForm/>}/>
                         <Route path='/admin/Grade/edit/:id' element={<GradeForm/>}/>
+
 
 
                         <Route path='/admin/profile' element={<Profile/>} />
