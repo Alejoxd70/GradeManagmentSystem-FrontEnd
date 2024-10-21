@@ -6,9 +6,9 @@ const StudentGroup = () => {
 
     return (
         <>
-            <h1 className="text-center text-light mt-4">StudentGroup</h1>
+            <h1 className="text-center text-light mt-4">Student</h1>
             <Card  className="mb-3" >
-                <Card.Header className="text-light">601</Card.Header>
+                <Card.Header>601</Card.Header>
                 <Card.Body>
                     <Table striped bordered hover responsive>
                         <thead>

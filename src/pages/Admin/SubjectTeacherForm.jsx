@@ -234,17 +234,17 @@ const SubjectTeacherForm = () => {
                             </Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
-                    
-                    
-                    
-                
+
+
+
+
                     <div className="d-flex justify-content-between align-items-end mt-4">
-                        <Button 
-                            type="submit" 
+                        <Button
+                            type="submit"
                             className="btn btn-light px-4 py-2 rounded-pill shadow"
                             disabled={isSummiting}
                         >
-                            
+
                             {id ? "Actualizar" : "Crear"} Matricula de Profesor
                         </Button>
                         <Link className="text-light link-underline-opacity-0 link-underline-opacity-100-hover" to="/admin/RegisterTeacher">
