@@ -13,19 +13,19 @@ const SideNavBar = () => {
                     </Nav.Item>
 
                     <Nav.Item className="nav-item">
-                        <Nav.Link className="nav-link text-white" eventKey="courses"as={Link} to={"/admin/courses"}><i className="bi bi-collection mx-2"></i>Grupos</Nav.Link>
+                        <Nav.Link className="nav-link text-white" eventKey="groups"as={Link} to={"/admin/groups"}><i className="bi bi-collection mx-2"></i>Grupos</Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item>
-                        <Nav.Link className="nav-link text-white" eventKey="registerStudent"as={Link} to={"/admin/register-students"}><i className="bi bi-backpack2 mx-2"></i>Matricular Estudiantes</Nav.Link>
+                        <Nav.Link className="nav-link text-white" eventKey="registerStudent"as={Link} to={"/admin/groupYears"}><i className="bi bi-backpack2 mx-2"></i>Matricular Estudiantes</Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item className="nav-item">
-                        <Nav.Link className="nav-link text-white" eventKey="subjects"as={Link} to={"/admin/subjects"}><i className="bi bi-book mx-2"></i>Materias</Nav.Link>
+                        <Nav.Link className="nav-link text-white" eventKey="subjects"as={Link} to={"/admin/Subject"}><i className="bi bi-book mx-2"></i>Materias</Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item className="nav-item">
-                        <Nav.Link className="nav-link text-white" eventKey="registerTeacher"as={Link} to={"/admin/register-teachers"}><i className="bi bi-person-workspace mx-2"></i>Matricular Profesores</Nav.Link>
+                        <Nav.Link className="nav-link text-white" eventKey="registerTeacher"as={Link} to={"/admin/RegisterTeacher"}><i className="bi bi-person-workspace mx-2"></i>Matricular Profesores</Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item className="nav-item">
@@ -33,7 +33,7 @@ const SideNavBar = () => {
                     </Nav.Item>
 
                     <Nav.Item className="nav-item">
-                        <Nav.Link className="nav-link text-white" eventKey="grades"as={Link} to={"/admin/grades"}><i className="bi bi-journal-check mx-2"></i>Notas</Nav.Link>
+                        <Nav.Link className="nav-link text-white" eventKey="grades"as={Link} to={"/admin/Grade"}><i className="bi bi-journal-check mx-2"></i>Notas</Nav.Link>
                     </Nav.Item>
                 </div>
                 
