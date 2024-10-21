@@ -20,7 +20,7 @@ import Profile from './pages/Admin/Profile';
 import UserForm from './pages/Admin/UserForm';
 import GradeForm from './pages/Admin/GradeForm';
 import SubjectForm from './pages/Admin/SubjectForm';
-
+import SubjectTeacherForm from './pages/Admin/SubjectTeacherForm';
 import GroupForm from './pages/Admin/GroupForm';
 
 
@@ -54,8 +54,12 @@ function App() {
                         <Route path='/admin/Subject' element={<Subject/>}/>
                         <Route path='/admin/Subject/create' element={<SubjectForm/>}/>
                         <Route path='/admin/Subject/edit/:id' element={<SubjectForm/>}/>
-                        
-                        <Route path='/admin/register-teachers' element={<RegisterTeacher/>}/>
+                        {/*subjectteachers*/}
+                        <Route path='/admin/RegisterTeacher' element={<RegisterTeacher/>}/>
+                        <Route path='/admin/RegisterTeacher/create' element={<SubjectTeacherForm/>}/>
+                        <Route path='/admin/RegisterTeacher/edit/:id' element={<SubjectTeacherForm/>}/>
+
+
                         <Route path='/admin/assignments' element={<Assignments/>}/>
                         {/*grades*/}
                         <Route path='/admin/Grade' element={<Grade/>}/>
