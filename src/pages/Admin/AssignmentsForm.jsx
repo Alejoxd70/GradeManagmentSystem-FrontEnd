@@ -41,7 +41,6 @@ const AssignmentsForm = () => {
             } catch (error) {
                 console.log(error);
             }
-
         }
     }, [id]);
 
