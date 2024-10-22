@@ -78,61 +78,64 @@ const Report = () => {
                     }
                 }, [id]);*/
 
-                //Assigments
-                useEffect(() => {
-                    // LLama la funcion getAssignments
-                    getSubjects();
-                }, []);
-            
-                // Busca los registros en la base de datos de Assignments
-                const getSubjects = async () => {
-                    try {
-                        const { data } = await axiosClient.get("/Subject")
-                        console.log(data);
-                        setSubjects(data)
-                    } catch (error) {
-                        console.log(error);
-            
-                    }
-                }
-            
-                console.log(subjects);
-            
-                const listSubjects = subjects.map(subject => (
-                    <tr key={subject.id}>
-                        <td>{subject.id}</td>
-                        <td>{subject.subjectname}</td>
-                    </tr>
-                ));
-  
-                // Función para descargar el reporte como archivo
-                const handleDownload = () => {
-                  const element = document.createElement("a");
-                  const file = new Blob([document.getElementById('report').outerHTML], { type: 'text/plain' });
-                  element.href = URL.createObjectURL(file);
-                  element.download = "reporte.html"; // Aquí defines el nombre del archivo
-                  document.body.appendChild(element);
-                  element.click();
-                };
-              
-                // Función para imprimir la tabla
-                const handlePrint = () => {
-                  const printContent = document.getElementById('report').outerHTML;
-                  const printWindow = window.open('', '', 'height=600,width=800');
-                  printWindow.document.write('<html><head><title>Reporte</title></head><body>');
-                  printWindow.document.write(printContent);
-                  printWindow.document.write('</body></html>');
-                  printWindow.document.close();
-                  printWindow.print();
-                };
-              
-                // Función para salir (puedes reemplazar por la acción que desees)
-                const handleExit = () => {
-                  // Aquí podrías implementar una lógica para cerrar sesión o redirigir a otra página
-                  window.location.href = "/login";  // Por ejemplo, redirigir al login
-                  <Link className="text-light link-underline-opacity-0 link-underline-opacity-100-hover" to="/student/Report">
-                        </Link>
-                };
+        //Assigments
+        useEffect(() => {
+            // LLama la funcion getAssignments
+            getSubjects();
+        }, []);
+    
+        // Busca los registros en la base de datos de Assignments
+        const getSubjects = async () => {
+            try {
+                const { data } = await axiosClient.get("/Subject")
+                console.log(data);
+                setSubjects(data)
+            } catch (error) {
+                console.log(error);
+    
+            }
+        }
+    
+        console.log(subjects);
+    
+        const listSubjects = subjects.map(subject => (
+            <tr key={subject.id}>
+                <td>{subject.subjectname}</td>
+                <td>50</td>
+                <td>40</td>
+                <td>30</td>
+                <td>{(50 + 40 + 30)/3}</td>
+            </tr>
+        ));
+
+        // Función para descargar el reporte como archivo
+        const handleDownload = () => {
+            const element = document.createElement("a");
+            const file = new Blob([document.getElementById('report').outerHTML], { type: 'text/plain' });
+            element.href = URL.createObjectURL(file);
+            element.download = "reporte.html"; // Aquí defines el nombre del archivo
+            document.body.appendChild(element);
+            element.click();
+        };
+        
+        // Función para imprimir la tabla
+        const handlePrint = () => {
+            const printContent = document.getElementById('report').outerHTML;
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Reporte</title></head><body>');
+            printWindow.document.write(printContent);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        };
+        
+        // Función para salir (puedes reemplazar por la acción que desees)
+        const handleExit = () => {
+            // Aquí podrías implementar una lógica para cerrar sesión o redirigir a otra página
+            window.location.href = "/login";  // Por ejemplo, redirigir al login
+            <Link className="text-light link-underline-opacity-0 link-underline-opacity-100-hover" to="/student/Report">
+                </Link>
+        };
 
                 
         return(
@@ -165,7 +168,6 @@ const Report = () => {
                     <thead >
                         <tr>
                             {/* Campos de la base de datos */}
-                            <th>Id</th>
                             <th>Asignatura</th>
                             <th>Periodo 1</th>
                             <th>Periodo 2</th>

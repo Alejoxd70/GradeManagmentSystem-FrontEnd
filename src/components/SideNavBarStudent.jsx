@@ -10,7 +10,7 @@ const SideNavBarStudent = () => {
                 <div>
 
                     <Nav.Item className="nav-item">
-                        <Nav.Link className="nav-link text-white" eventKey="courses" as={Link} to={"/student/groups"}><i className="bi bi-collection mx-2"></i>Grupos</Nav.Link>
+                        <Nav.Link className="nav-link text-white" eventKey="homepage" as={Link} to={"/student/groups"}><i className="bi bi-collection mx-2"></i>Pagina Principal</Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item className="nav-item">
