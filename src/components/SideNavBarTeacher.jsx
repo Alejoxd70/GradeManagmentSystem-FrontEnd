@@ -19,7 +19,7 @@ const SideNavBarTeacher = () => {
                 <div className="d-flex align-items-center px-4">
                     <i className="bi bi-person-fill"></i>
                     <NavDropdown title="Pepito" id="nav-dropdown" menuVariant="dark">
-                        <NavDropdown.Item eventKey="profile" as={Link} to={"/student/profile"}>Perfil</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="profile" as={Link} to={"/teacher/profile"}>Perfil</NavDropdown.Item>
                         <NavDropdown.Item eventKey="logout">Cerrar sesión</NavDropdown.Item>
                     </NavDropdown>
                 </div>
