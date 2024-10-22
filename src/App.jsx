@@ -20,6 +20,7 @@ import Profile from './pages/Admin/Profile';
 import UserForm from './pages/Admin/UserForm';
 import StudentLayout from './layout/StudentLayout';
 import StudentGroup from './pages/student/StudentGroup.jsx';
+import Report from './pages/student/Report.jsx';
 import TeacherLayout from './layout/TeacherLayout.jsx';
 import TeacherGroup from './pages/teacher/TeacherGroup.jsx';
 import GradeForm from './pages/Admin/GradeForm';
@@ -28,6 +29,7 @@ import SubjectTeacherForm from './pages/Admin/SubjectTeacherForm';
 import GroupForm from './pages/Admin/GroupForm';
 import RegisterStudentForm from './pages/Admin/RegisterStudentForm';
 import AssignmentsForm from './pages/Admin/AssignmentsForm';
+import StudentProfile from './pages/student/StudentProfile.jsx';
 
 
 function App() {
@@ -86,6 +88,8 @@ function App() {
                     {/* STUDENT ROUTES */}
                     <Route path='/student' element={<StudentLayout/>}>
                         <Route path='/student/groups' element={<StudentGroup/>}/>
+                        <Route path='/student/reports' element={<Report/>}/>
+                        <Route path='/student/profile' element={<StudentProfile/>}/>
                     </Route>
 
                     {/* TEACHER ROUTES */}
