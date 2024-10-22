@@ -20,6 +20,7 @@ import Profile from './pages/Admin/Profile';
 import UserForm from './pages/Admin/UserForm';
 import StudentLayout from './layout/StudentLayout';
 import StudentGroup from './pages/student/StudentGroup.jsx';
+import Report from './pages/student/Report.jsx';
 import TeacherLayout from './layout/TeacherLayout.jsx';
 import TeacherGroup from './pages/teacher/TeacherGroup.jsx';
 import GradeForm from './pages/Admin/GradeForm';
@@ -33,6 +34,13 @@ import ListAssigments from './pages/teacher/listAssignments.jsx';
 import FormAssignmentTeacher from './pages/teacher/FormAssignmentTeacher.jsx';
 import TeacherGrade from './pages/teacher/TeacherGrade.jsx';
 import TeacherGradeForm from './pages/teacher/TeacherGradeForm.jsx';
+
+import StudentProfile from './pages/student/StudentProfile.jsx';
+
+import SubjectStudent from './pages/student/SubjectStudent';
+import AssigmentStudent from './pages/student/AssigmentStudent';
+
+
 
 
 function App() {
@@ -92,6 +100,14 @@ function App() {
                     <Route path='/student' element={<StudentLayout/>}>
                         <Route path='/student/groups' element={<StudentGroup/>}/>
                         <Route path='/student/profile' element={<Profile/>}/>
+                        <Route path='/student/reports' element={<Report/>}/>
+                        <Route path='/student/profile' element={<StudentProfile/>}/>
+                        {/*subjectstudent*/}
+                        <Route path='/student/subjects' element={<SubjectStudent/>}/>
+                        {/*assigmentstudent*/}
+                        <Route path='/student/assignments/' element={<AssigmentStudent/>}/>
+                        
+
                     </Route>
 
                     {/* TEACHER ROUTES */}
