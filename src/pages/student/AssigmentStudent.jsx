@@ -4,19 +4,19 @@ import Table from "react-bootstrap/Table";
 
 
 const AssignmentStudent = () => {
-  const [assignments, setAssignments] = useState([]);
+  const [grades, setGrades] = useState([]);
 
   useEffect(() => {
-    // LLama la funcion getAssignments
-    getAssignments();
+    // LLama la funcion getUsers
+    getGrades();
 }, []);
 
-// Busca los registros en la base de datos de Assignments
-const getAssignments = async () => {
+// Busca los registros en la base de datos de Users
+const getGrades = async () => {
     try {
-        const { data } = await axiosClient.get("/Assigments")
+        const { data } = await axiosClient.get("/Grade")
         console.log(data);
-        setAssignments(data)
+        setGrades(data)
     } catch (error) {
         console.log(error);
 
@@ -24,14 +24,15 @@ const getAssignments = async () => {
 }
 
 
-  const listAssignments = assignments.map(assignment => (
-    <tr key={assignment.id}>
-      <td className="text-center">{assignment.id}</td>
-      <td className="text-center">{assignment.name}</td>
-      <td className="text-center">{assignment.description}</td>
-      <td className="text-center">{assignment.date}</td>
+const listGrades = grades.map(grade => (
+    <tr key={grade.id}>
+        <td>{grade.assigment.id}</td>
+        <td>{grade.assigment.name}</td>
+        <td>{grade.assigment.description}</td>
+        <td>{grade.assigment.date}</td>
+        <td>{grade.value}</td>
     </tr>
-  ));
+));
 
   return (
     <>
@@ -47,7 +48,7 @@ const getAssignments = async () => {
               <th className="text-center">Nota</th>
             </tr>
           </thead>
-          <tbody>{listAssignments}</tbody>
+          <tbody>{listGrades}</tbody>
         </Table>
       </div>
     </>
