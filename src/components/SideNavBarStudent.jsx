@@ -13,6 +13,12 @@ const SideNavBarStudent = () => {
                         <Nav.Link className="nav-link text-white" eventKey="courses"as={Link} to={"/student/groups"}><i className="bi bi-collection mx-2"></i>Grupos</Nav.Link>
                     </Nav.Item>
 
+                    <Nav.Item className="nav-item">
+                        <Nav.Link className="nav-link text-white" eventKey="subjects"as={Link} to={"/student/subjects"}><i className="bi bi-collection mx-2"></i>Materia</Nav.Link>
+                    </Nav.Item>
+
+
+
                    
                 </div>
                 

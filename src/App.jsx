@@ -28,6 +28,9 @@ import SubjectTeacherForm from './pages/Admin/SubjectTeacherForm';
 import GroupForm from './pages/Admin/GroupForm';
 import RegisterStudentForm from './pages/Admin/RegisterStudentForm';
 import AssignmentsForm from './pages/Admin/AssignmentsForm';
+import SubjectStudent from './pages/student/SubjectStudent';
+import AssigmentStudent from './pages/student/AssigmentStudent';
+
 
 
 function App() {
@@ -86,6 +89,12 @@ function App() {
                     {/* STUDENT ROUTES */}
                     <Route path='/student' element={<StudentLayout/>}>
                         <Route path='/student/groups' element={<StudentGroup/>}/>
+
+                        {/*subjectstudent*/}
+                        <Route path='/student/subjects' element={<SubjectStudent/>}/>
+                        {/*assigmentstudent*/}
+                        <Route path='/student/assignments/' element={<AssigmentStudent/>}/>
+                        
                     </Route>
 
                     {/* TEACHER ROUTES */}
