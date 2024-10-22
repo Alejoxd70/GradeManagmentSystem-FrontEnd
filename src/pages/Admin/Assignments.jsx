@@ -79,7 +79,7 @@ const Assignments = () => {
         <>
             <h1 className="text-center text-light mt-4">Asignaciones</h1>
                      {/* botón agregar asignaciones */}
-                     <div className="d-flex justify-content-end">
+            <div className="d-flex justify-content-end">
                 <Button className="mb-2" as={Link} to="/admin/assignments/create">Agregar una nueva asignacion</Button>
             </div>
 

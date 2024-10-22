@@ -5,17 +5,22 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import Message from "../components/Message";
 import { Link, useNavigate } from "react-router-dom";
-
+import axiosClient from "../config/axios";
 
 
 const Login = () => {
     const [validated, setValidated] = useState(false);
     const [message, setMessage] = useState({});
+    const [loginData, setLoginData] = useState({});
 
     const navigate = useNavigate();
 
+    const handleOnChange = e => {
+        setLoginData({ ...loginData, [e.target.name]: e.target.value })
+        console.log(loginData);
+    }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
             e.preventDefault();
@@ -26,8 +31,28 @@ const Login = () => {
 
         if (form.checkValidity() === true) {
             e.preventDefault();
-            setMessage({ text: "Well Done", variant: "success" })
-            navigate("/admin/users")
+            try {
+                const urlData = new URLSearchParams(loginData).toString();
+                const userValidated = await axiosClient.post(`/Users/login?${urlData}`);
+                console.log(userValidated);
+                setMessage({ text: "Well done!", variant: "success" })
+                setTimeout(() => {
+                    navigate("/admin/users")
+                }, 2000);
+            } catch (error) {
+                if (error.response.data.message) {
+                    console.log(error);
+                    setMessage({ text: error.response.data.message, variant: "danger" })
+                } else {
+                    console.log(error);
+                    setMessage({ text: error.response.data, variant: "danger" })
+                }
+
+
+            }
+
+
+
         }
 
     };
@@ -43,6 +68,8 @@ const Login = () => {
                         <InputGroup hasValidation className="w-75">
                             <Form.Control
                                 type="email"
+                                name="email"
+                                onChange={handleOnChange}
                                 placeholder="Enter email"
                                 required
                                 autoComplete="username"
@@ -59,7 +86,9 @@ const Login = () => {
                         <InputGroup hasValidation className="w-75">
                             <Form.Control
                                 type="password"
+                                name="password"
                                 placeholder="Password"
+                                onChange={handleOnChange}
                                 required
                                 autoComplete="current-password"
                                 className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"

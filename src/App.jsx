@@ -29,6 +29,11 @@ import SubjectTeacherForm from './pages/Admin/SubjectTeacherForm';
 import GroupForm from './pages/Admin/GroupForm';
 import RegisterStudentForm from './pages/Admin/RegisterStudentForm';
 import AssignmentsForm from './pages/Admin/AssignmentsForm';
+import ListStudents from './pages/teacher/ListStudents.jsx';
+import ListAssigments from './pages/teacher/listAssignments.jsx';
+import FormAssignmentTeacher from './pages/teacher/FormAssignmentTeacher.jsx';
+import TeacherGrade from './pages/teacher/TeacherGrade.jsx';
+import TeacherGradeForm from './pages/teacher/TeacherGradeForm.jsx';
 
 import StudentProfile from './pages/student/StudentProfile.jsx';
 
@@ -94,11 +99,9 @@ function App() {
                     {/* STUDENT ROUTES */}
                     <Route path='/student' element={<StudentLayout/>}>
                         <Route path='/student/groups' element={<StudentGroup/>}/>
-
+                        <Route path='/student/profile' element={<Profile/>}/>
                         <Route path='/student/reports' element={<Report/>}/>
                         <Route path='/student/profile' element={<StudentProfile/>}/>
-
-
                         {/*subjectstudent*/}
                         <Route path='/student/subjects' element={<SubjectStudent/>}/>
                         {/*assigmentstudent*/}
@@ -109,7 +112,15 @@ function App() {
 
                     {/* TEACHER ROUTES */}
                     <Route path='/teacher' element={<TeacherLayout/>}>
+                        <Route path='/teacher/profile' element={<Profile/>}/>
                         <Route path='/teacher/groups' element={<TeacherGroup/>}/>
+                        <Route path='/teacher/grades' element={<TeacherGrade/>}/>
+                        <Route path='/teacher/grades/create' element={<TeacherGradeForm/>}/>
+                        <Route path='/teacher/grades/edit/:id' element={<TeacherGradeForm/>}/>
+                        <Route path='/teacher/groups/:id' element={<ListStudents/>}/>
+                        <Route path='/teacher/assignments' element={<ListAssigments/>}/>
+                        <Route path='/teacher/assignments/create' element={<FormAssignmentTeacher/>}/>
+                        <Route path='/teacher/assignments/edit/:id' element={<FormAssignmentTeacher/>}/>
                     </Route>
                     
                 </Routes>

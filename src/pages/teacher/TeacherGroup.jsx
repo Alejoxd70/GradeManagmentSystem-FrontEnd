@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axiosClient from "../../config/axios";
 import { Accordion } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const TeacherGroup = () => {
     const [subjectTeachers, setSubjectTeachers] = useState([]);
@@ -25,7 +26,7 @@ const TeacherGroup = () => {
     }, []);
 
     const listSubjectTeacher = subjectTeachers.map(subjecTeacher => (
-        <p key={subjecTeacher.id}>{subjecTeacher.groupYear.year}</p>
+        <Link to={`/teacher/groups/${subjecTeacher.id}`} className="d-block" key={subjecTeacher.id}>{subjecTeacher.groupYear.year}</Link>
     ));
 
     return (
