@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import Message from "../components/Message";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axiosClient from "../config/axios";
 
 
@@ -99,13 +99,13 @@ const Login = () => {
                         </InputGroup>
                     </Form.Group>
 
-                    <div className="d-flex justify-content-between align-items-end mt-4">
+                    <div className="d-flex justify-content-end align-items-end mt-4">
                         <Button type="submit" className="btn btn-light px-4 py-2 rounded-pill shadow">
                             Log in
                         </Button>
-                        <Link className="text-light link-underline-opacity-0 link-underline-opacity-100-hover" to="/forgot-password">
+                        {/* <Link className="text-light link-underline-opacity-0 link-underline-opacity-100-hover" to="/forgot-password">
                             Forgot password?
-                        </Link>
+                        </Link> */}
                     </div>
 
                     {message.text && <Message message={message} />}

@@ -10,7 +10,7 @@ const AdminLayout = () => {
                     <SideNavBar/>
 
                     
-                    <Container >
+                    <Container className="container-section">
                         <Outlet/>
                     </Container>
             </Container>

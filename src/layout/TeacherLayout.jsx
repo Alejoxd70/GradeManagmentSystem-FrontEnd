@@ -9,7 +9,7 @@ const TeacherLayout = () => {
             <Container fluid className="d-flex p-0">
                     <SideNavBarTeacher/>      
 
-                    <Container >
+                    <Container className="container-section" >
                         <Outlet/>
                     </Container>
             </Container>

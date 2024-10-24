@@ -1,10 +1,10 @@
 import { Container, Row, Col } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return(
         <>
-            <footer className="bg-secondary">
+            <footer className="bg-secondary bg-opacity-50">
                 <Container fluid>
                     <Row className="p-3 text">
                         <Col className="text-center text-md-start">Nos puedes seguir en nuestras redes sociales</Col>
@@ -19,6 +19,14 @@ const Footer = () => {
 
                     <Row className="p-2">
                         <Col className="text-center">&copy;{new Date().getFullYear()} Todos los derechos reservados</Col>
+                        
+                    </Row>
+                    <Row>
+                        <Col className="d-flex gap-3 justify-content-center">
+                            <Link className="text-black" to={"/student/groups"}>Vista Estudiante</Link>
+                            <Link className="text-black" to={"/teacher/homepage"}>Vista Profesor</Link>
+                            <Link className="text-black" to={"/admin/users"}>Vista Admin</Link>
+                        </Col>
                     </Row>
 
                 </Container>

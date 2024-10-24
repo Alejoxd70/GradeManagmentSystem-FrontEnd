@@ -9,7 +9,7 @@ const StudentLayout = () => {
             <Container fluid className="d-flex p-0">
                     <SideNavBarStudent/>
                     
-                    <Container >
+                    <Container className="container-section" >
                         <Outlet/>
                     </Container>
             </Container>

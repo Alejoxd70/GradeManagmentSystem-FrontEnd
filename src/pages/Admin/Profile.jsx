@@ -30,7 +30,7 @@ const Profile = () => {
 
     return (
         <>
-            <h1 className="text-center text-light mt-4">Profile</h1>
+            <h1 className="text-center text-light mt-4">Perfil</h1>
             <div className="d-flex justify-content-center mt-5">
                 <Card bg="dark" border="info" className="text-light w-50">
                     <div className="text-center mt-2">

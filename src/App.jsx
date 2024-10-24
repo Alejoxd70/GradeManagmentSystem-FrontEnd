@@ -39,6 +39,8 @@ import StudentProfile from './pages/student/StudentProfile.jsx';
 
 import SubjectStudent from './pages/student/SubjectStudent';
 import AssigmentStudent from './pages/student/AssigmentStudent';
+import HomePage from './components/HomePage.jsx';
+import Teacher from './pages/teacher/Teacher.jsx';
 
 
 
@@ -112,6 +114,7 @@ function App() {
 
                     {/* TEACHER ROUTES */}
                     <Route path='/teacher' element={<TeacherLayout/>}>
+                        <Route path='/teacher/homepage' element={<Teacher/>}/>
                         <Route path='/teacher/profile' element={<Profile/>}/>
                         <Route path='/teacher/groups' element={<TeacherGroup/>}/>
                         <Route path='/teacher/grades' element={<TeacherGrade/>}/>

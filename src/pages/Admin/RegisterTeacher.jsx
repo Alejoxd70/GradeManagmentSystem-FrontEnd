@@ -84,11 +84,11 @@ const RegisterTeacher = () => {
     // Lo que se va a mostrar
     return (
         <>
-            <h1 className="text-center text-light mt-4">Profesores Matriculados</h1>
+            <h1 className="text-center text-light mt-4">Profesores Asignados</h1>
 
             {/* botón agregar nueva matricula de profesor*/ }
             <div className="d-flex justify-content-end">
-                <Button className="mb-2" as={Link} to="/admin/RegisterTeacher/create">Matricular nuevo profesor</Button>
+                <Button className="mb-2" as={Link} to="/admin/RegisterTeacher/create">Asignar nuevo profesor</Button>
             </div>
 
             <div>
