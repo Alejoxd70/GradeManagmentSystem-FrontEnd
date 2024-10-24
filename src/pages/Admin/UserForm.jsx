@@ -35,7 +35,7 @@ const UserForm = () => {
                         name: data.name,
                         lastName: data.lastName,
                         email: data.email,
-                        password: data.password,
+                        password: "",
                         identification: data.identification,
                         userTypeId: data.userType.id,
                     }
@@ -104,9 +104,9 @@ const UserForm = () => {
                 }
             } else {
                 try {
-                    // if (!formData.password) {
-                    //     delete formData.password;
-                    // }
+                    if (!formData.password) {
+                        delete formData.password;
+                    }
                     const queryString = new URLSearchParams(formData).toString();
                     const url = `/Users/${id}?${queryString}`
 
@@ -197,7 +197,7 @@ const UserForm = () => {
                                 onChange={handleOnChange}
                                 type="password"
                                 placeholder="Contraseña"
-                                required
+                                required={!id}
                                 autoComplete="current-password"
                                 className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
                             />

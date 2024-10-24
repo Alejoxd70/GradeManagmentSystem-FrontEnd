@@ -77,7 +77,7 @@ const RegisterStudent = (
         ));
     return(
         <>
-            <h1 className="text-center text-light mt-4">Matricular estudiantes en grupos</h1>
+            <h1 className="text-center text-light mt-4">Estudiantes en grupos</h1>
                          {/* botón agregar grupos */}
                          <div className="d-flex justify-content-end">
                 <Button className="mb-2" as={Link} to="/admin/groupYears/create">Agregar nuevo estudiante en grupo</Button>

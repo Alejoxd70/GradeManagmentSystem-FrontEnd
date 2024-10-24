@@ -4,12 +4,16 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { InputGroup, Form } from "react-bootstrap";
 
 
 const User = () => {
     // Variables
     const [users, setUsers] = useState([]);
+    const [userTypes, setUserTypes] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [filteredData, setFilteredData] = useState([]);
+    const [filter, setFilter] = useState('');
 
     // useEffect solo se llama una vez cuando renderizamos
     useEffect(() => {
@@ -29,8 +33,38 @@ const User = () => {
         }
     }
 
-    // Mientras busca los users mostrar loading
-    if (loading) return "Loading....";
+    useEffect(() => {
+        // Filter the data based on the selected age filter
+        if (filter) {
+            setFilteredData(users.filter(user => user.userType.id === parseInt(filter)));
+
+        } else {
+            setFilteredData(users); // If no filter is selected, show all
+        }
+    }, [filter, users]);
+
+    // Fetch userTypes
+    useEffect(() => {
+        const getUserTypes = async () => {
+            try {
+                const { data } = await axiosClient.get("/UserTypes");
+                setUserTypes(data);
+                console.log(data);
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getUserTypes();
+    }, []);
+
+    const listUserTypes = userTypes.map(userType => (
+        <option key={userType.id} value={userType.id}>{userType.userTypeName}</option>
+    ));
+
+    console.log(filteredData);
+
+
 
     // Cuando presionamos delete
     const handleDeleteButton = e => {
@@ -65,7 +99,7 @@ const User = () => {
     }
 
     // De todos los usuarios de la base de datos crea una lista
-    const listUsers = users.map(user => (
+    const listUsers = filteredData.map(user => (
         <tr key={user.id}>
             <td>{user.id}</td>
             <td>{user.name}</td>
@@ -81,11 +115,32 @@ const User = () => {
         </tr>
     ));
 
+    const handleOnChangeFilter = e => {
+        console.log("hello");
+        console.log(e.target.value);
+
+        setFilter(e.target.value)
+    }
+
+    // Mientras busca los users mostrar loading
+    if (loading) return "Loading....";
+
     // Lo que se va a mostrar
     return (
         <>
             <h1 className="text-center text-light mt-4">Usuarios</h1>
 
+            <InputGroup hasValidation className="w-75">
+                <Form.Select
+                    name="userTypeId"
+                    onChange={handleOnChangeFilter}
+                    required
+                    className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
+                >
+                    <option value="" defaultChecked>Mostrar Todos</option>
+                    {listUserTypes}
+                </Form.Select>
+            </InputGroup>
             {/* botón agregar usuario */}
             <div className="d-flex justify-content-end">
                 <Button className="mb-2" as={Link} to="/admin/users/create">Agregar nuevo usuario</Button>

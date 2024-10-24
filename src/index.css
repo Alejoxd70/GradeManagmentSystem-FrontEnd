@@ -24,7 +24,9 @@
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 }
-
+body {
+    font-family: "Playwrite GB S";
+}
 .accordion-button {
     background-color: var(--bs-gray);
     color: white;
@@ -35,12 +37,51 @@
     background-color: var(--bs-gray-dark);
     color: white;
 }
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100%;
+    background-color: #343a40;
+    padding: 20px;
+    color: white;
+    overflow-y: auto; /* Permite scroll interno si hay mucho contenido */
+}
 
-
-
-
-
-
+.footer {
+    margin-left: 250px;
+}
+.image-homepage::before{
+    content: "";
+    background-image: url("./assets/pioXII.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    position: absolute;
+    height: 40rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Place behind the content */
+}
+.image-homepage {
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.nav-pills {
+    width: 250px;
+}
+.container-section {
+    margin-left: 40px;
+}
 
 
 #nav-dropdown {
