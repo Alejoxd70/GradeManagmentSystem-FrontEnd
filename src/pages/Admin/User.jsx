@@ -129,18 +129,21 @@ const User = () => {
     return (
         <>
             <h1 className="text-center text-light mt-4">Usuarios</h1>
-
-            <InputGroup hasValidation className="w-75">
-                <Form.Select
-                    name="userTypeId"
-                    onChange={handleOnChangeFilter}
-                    required
-                    className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
-                >
-                    <option value="" defaultChecked>Mostrar Todos</option>
-                    {listUserTypes}
-                </Form.Select>
-            </InputGroup>
+            {/* Filtrar */}
+            <Form.Group className="d-flex justify-content-between align-items-center mb-3">
+                <Form.Label className="w-25 mb-0 text-light">Filtrar por tipo de usuario</Form.Label>
+                <InputGroup hasValidation className="w-75">
+                    <Form.Select
+                        name="userTypeId"
+                        onChange={handleOnChangeFilter}
+                        required
+                        className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
+                    >
+                        <option value="" defaultChecked>Mostrar Todos</option>
+                        {listUserTypes}
+                    </Form.Select>
+                </InputGroup>
+            </Form.Group>
             {/* botón agregar usuario */}
             <div className="d-flex justify-content-end">
                 <Button className="mb-2" as={Link} to="/admin/users/create">Agregar nuevo usuario</Button>
