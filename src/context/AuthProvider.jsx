@@ -15,11 +15,11 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const savedAuth = localStorage.getItem("auth");
         console.log(savedAuth);
-        
+
         if (savedAuth) {
             const authData = JSON.parse(savedAuth);
             console.log(authData);
-            
+
             setAuth(authData);
             setIsAuthenticated(true);
             setRoleType(authData.userType.userTypeName);
@@ -28,14 +28,14 @@ const AuthProvider = ({ children }) => {
         }
         setLoading(false);
     }, []);
-    
+
     const authLogin = (authData) => {
         localStorage.setItem("auth", JSON.stringify(authData));
         setAuth(authData);
         setIsAuthenticated(true);
         setRoleType(authData.userType.userTypeName);
     };
-    
+
     const logOut = () => {
         localStorage.removeItem("auth");
         setIsAuthenticated(false);
