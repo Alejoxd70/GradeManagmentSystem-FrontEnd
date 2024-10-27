@@ -70,7 +70,7 @@ const RegisterTeacher = () => {
     const listRegisterTeachers = registerTeachers.map(registerTeacher => (
         <tr key={registerTeacher.id}>
             <td>{registerTeacher.id}</td>
-            <td>{registerTeacher.teacher.id}</td>
+            <td>{registerTeacher.teacher.user.name} {registerTeacher.teacher.user.lastName}</td>
             <td>{registerTeacher.subject.subjectname}</td>
             <td>{registerTeacher.groupYear.year}</td>
             <td className="d-flex g-3 gap-2">
