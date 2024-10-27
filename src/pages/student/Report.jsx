@@ -4,6 +4,7 @@ import { Button, Table, Tabs, Tab } from "react-bootstrap";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import UseAuth from "../../hooks/UseAuth";
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 
 const Report = () => {
@@ -104,9 +105,11 @@ const Report = () => {
     };
 
     const listSubjects2 = subjects.map(subject => (
-        <tr key={subject.id} onClick={() => handleViewAssignments(subject.id)} style={{ cursor: "pointer" }}>
-            <td>{subject.subjectname}</td>
-        </tr>
+        <>
+        <Button variant="outline-secondary" className="text-light" key={subject.id} onClick={() => handleViewAssignments(subject.id)} style={{ cursor: "pointer" }}>
+            {subject.subjectname}
+        </Button>
+        </>
     ));
     //-------------------------------------------------------------------------------------------------------------//
     
@@ -128,11 +131,41 @@ const Report = () => {
             </div>
         {/*----------------------------------------------------------------------------------------------------*/}  
             <Tabs 
-                defaultActiveKey="groupYear" 
+                defaultActiveKey="subject" 
                 id="uncontrolled-tab-example" 
                 className="mb-3" 
                 onSelect={(key) => setActiveTab(key)}
             >
+                {/* Pestaña de Materias */}
+                <Tab eventKey="subject" title="Materias">
+                    <div id="subject" className="d-flex gap-5"> 
+                        <div className="w-25">
+                        <h2 className="text-light">Asignatura</h2>
+                        <ButtonGroup vertical className="w-100">
+                        {listSubjects2}
+                        </ButtonGroup>
+                        </div>
+                    
+                        <div className="w-75">
+                            <h2 className="text-light">Resumen de Notas de la Materia</h2>
+                        {activeSubject && (
+                            <Table striped bordered hover responsive="sm" variant="dark" className="mt-4">
+                                <thead>
+                                    <tr>
+                                        <th>Asignación</th>
+                                        <th>Descripción</th>
+                                        <th>Nota</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {listGrades}
+                                </tbody>
+                            </Table>
+                        )}
+                        </div>
+                    </div>
+                </Tab>
+
                 {/* Pestaña de Periodo */}
                 <Tab eventKey="groupYear" title="Periodo">
                     <div id="groupYear">
@@ -153,40 +186,6 @@ const Report = () => {
                     </div>
                 </Tab>
 
-                {/* Pestaña de Materias */}
-                <Tab eventKey="subject" title="Materias">
-                    <div id="subject" className="d-flex gap-5"> 
-                        <div className="w-50">
-                        <Table striped bordered hover responsive="sm" variant="dark">
-                            <thead>
-                                <tr>
-                                    <th>Asignatura</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {listSubjects2}
-                            </tbody>
-                        </Table>
-                        </div>
-                    
-                        <div className="w-50">
-                        {activeSubject && (
-                            <Table striped bordered hover responsive="sm" variant="dark" className="mt-4">
-                                <thead>
-                                    <tr>
-                                        <th>Asignación</th>
-                                        <th>Descripción</th>
-                                        <th>Nota</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {listGrades}
-                                </tbody>
-                            </Table>
-                        )}
-                        </div>
-                    </div>
-                </Tab>
             </Tabs>
         </>
     );
