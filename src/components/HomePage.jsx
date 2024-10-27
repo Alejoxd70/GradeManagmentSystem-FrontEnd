@@ -7,7 +7,7 @@ const HomePage = () => {
 
 	return (
 		<>
-        <div>
+        <div >
 			<Navbar bg="dark" expand="lg" className="shadow-sm">
 				<Container>
 					<Navbar.Brand href="#home" className="fw-bold text-light">Colegio PIOXII</Navbar.Brand>
