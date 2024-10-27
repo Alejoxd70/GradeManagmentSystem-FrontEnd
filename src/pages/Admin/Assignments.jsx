@@ -67,7 +67,7 @@ const Assignments = () => {
                     <td>{assignment.name}</td>
                     <td>{assignment.description}</td>
                     <td>{assignment.date}</td>
-                    <td>{assignment.subjectTeacher.id}</td>
+                    <td>{assignment.subjectTeacher.subject.subjectname}</td>
                     <td className="d-flex g-3 gap-2">
                         <Button variant="info" as={Link} to={`/admin/assignments/edit/${assignment.id}`}><i className="bi bi-pencil-square"></i>
                         </Button>
