@@ -4,12 +4,16 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { InputGroup, Form } from "react-bootstrap";
 
 
 const RegisterTeacher = () => {
     // Variables
     const [registerTeachers, setRegisterTeachers] = useState([]);
+    const [groupYears, setGroupYears] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [filteredData, setFilteredData] = useState([]);
+    const [filter, setFilter] = useState('');
 
     
     // useEffect solo se llama una vez cuando renderizamos
@@ -31,8 +35,39 @@ const RegisterTeacher = () => {
         }
     }
 
-    // Mientras busca los registros mostrar loading
-    if (loading) return "Loading....";
+    useEffect(() => {
+        // Filter the data based on the selected age filter
+        if (filter) {
+            setFilteredData(registerTeachers.filter(registerTeacher => registerTeacher.groupYear.id === parseInt(filter)));
+
+        } else {
+            setFilteredData(registerTeachers); // If no filter is selected, show all 
+        }
+    }, [filter, registerTeachers]);
+
+    
+
+    // Fetch userTypes
+
+    useEffect(() => {
+        const getGroupYears = async () => {
+            try {
+                const { data } = await axiosClient.get("/GroupYear");
+                setGroupYears(data);
+                console.log(data);
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getGroupYears();
+    }, []);
+
+    const listGroupYears = groupYears.map(groupYear => (
+        <option key={groupYear.id} value={groupYear.id}>{groupYear.year} {groupYear.group.groupName}</option>
+    ));
+
+    console.log(filteredData);
 
     // Cuando presionamos delete
     const handleDeleteButton = e => {
@@ -67,7 +102,7 @@ const RegisterTeacher = () => {
     }
 
     // De todos los registros de profesores matriculados de la base de datos crea una lista
-    const listRegisterTeachers = registerTeachers.map(registerTeacher => (
+    const listRegisterTeachers = filteredData.map(registerTeacher => (
         <tr key={registerTeacher.id}>
             <td>{registerTeacher.id}</td>
             <td>{registerTeacher.teacher.user.name} {registerTeacher.teacher.user.lastName}</td>
@@ -81,10 +116,38 @@ const RegisterTeacher = () => {
         </tr>
     ));
 
+    const handleOnChangeFilter = e => {
+        console.log("hello");
+        console.log(e.target.value);
+
+        setFilter(e.target.value)
+    }
+
+    // Mientras busca los registros mostrar loading
+    if (loading) return "Loading....";
+
     // Lo que se va a mostrar
     return (
         <>
             <h1 className="text-center text-light mt-4">Profesores Asignados</h1>
+
+
+
+            {/* Filtrar */}
+            <Form.Group className="d-flex justify-content-between align-items-center mb-3">
+                <Form.Label className="w-25 mb-0 text-light">Filtrar por año</Form.Label>
+                <InputGroup hasValidation className="w-75">
+                    <Form.Select
+                        name="groupYearId"
+                        onChange={handleOnChangeFilter}
+                        required
+                        className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
+                    >
+                        <option value="" defaultChecked>Mostrar Todos</option>
+                        {listGroupYears}
+                    </Form.Select>
+                </InputGroup>
+            </Form.Group>
 
             {/* botón agregar nueva matricula de profesor*/ }
             <div className="d-flex justify-content-end">
