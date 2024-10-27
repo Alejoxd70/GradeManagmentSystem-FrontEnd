@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import axiosClient from "../../config/axios";
-import { Button, Table, Tabs, Tab } from "react-bootstrap";
+import { Button, Table, Tabs, Tab, ListGroup } from "react-bootstrap";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import UseAuth from "../../hooks/UseAuth";
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 
 const Report = () => {
@@ -13,7 +12,7 @@ const Report = () => {
     const [activeTab, setActiveTab] = useState("groupYear");
     const [activeSubject, setActiveSubject] = useState(null);
     const [filteredData, setFilteredData] = useState([]);
-    const {auth}=UseAuth();
+    const { auth } = UseAuth();
 
     useEffect(() => {
         getSubjects();
@@ -39,7 +38,7 @@ const Report = () => {
         }
     };
 
-    
+
 
     // Función para descargar el contenido de la pestaña activa como PDF
     const handleDownload = () => {
@@ -48,7 +47,7 @@ const Report = () => {
             .then((canvas) => {
                 const imgData = canvas.toDataURL("image/png");
                 const pdf = new jsPDF("p", "mm", "a4");
-                pdf.addImage(imgData, "PNG", 10, 10, 190, 0); 
+                pdf.addImage(imgData, "PNG", 10, 10, 190, 0);
                 pdf.save(`Informe_${activeTab}.pdf`);
             })
             .catch((error) => console.error("Error generando el PDF:", error));
@@ -77,7 +76,7 @@ const Report = () => {
     const handleExit = () => {
         window.location.href = "/student/groups";
     };
-//----------------------------------------Parte Periodo----------------------------------------------------//
+    //----------------------------------------Parte Periodo----------------------------------------------------//
     const listSubjects = subjects.map(subject => (
         <tr key={subject.id} >
             <td>{subject.subjectname}</td>
@@ -88,7 +87,7 @@ const Report = () => {
         </tr>
     ));
 
- //----------------------------------------Parte Materias-----------------------------------------------------//
+    //----------------------------------------Parte Materias-----------------------------------------------------//
     const listGrades = filteredData.map(grade => (
         <tr key={grade.id}>
             <td>{grade.assigment.name}</td>
@@ -99,24 +98,23 @@ const Report = () => {
 
     // Función para manejar la selección de una materia y cargar sus asignaciones
     const handleViewAssignments = (subjectId) => {
-        setFilteredData(grades.filter(grade=>grade.assigment.subjectTeacher.subject.id === subjectId && grade.student.user.id === auth.id))
+        setFilteredData(grades.filter(grade => grade.assigment.subjectTeacher.subject.id === subjectId && grade.student.user.id === auth.id))
         setActiveSubject(subjectId);
         getGrades(subjectId);
     };
 
     const listSubjects2 = subjects.map(subject => (
-        <>
-        <Button variant="outline-secondary" className="text-light" key={subject.id} onClick={() => handleViewAssignments(subject.id)} style={{ cursor: "pointer" }}>
+        <ListGroup.Item key={subject.id} action href={`#${subject.id}`} onClick={() => handleViewAssignments(subject.id)}>
             {subject.subjectname}
-        </Button>
-        </>
+        </ListGroup.Item>
+
     ));
     //-------------------------------------------------------------------------------------------------------------//
-    
+
     return (
         <>
             <h1 className="text-center text-light mt-4">Informe</h1>
-        {/*----------------------------------------------------------------------------------------------------*/}
+            {/*----------------------------------------------------------------------------------------------------*/}
             {/* Controles de acción */}
             <div className="mb-3">
                 <Button variant="primary" onClick={handleDownload} className="me-2">
@@ -129,39 +127,42 @@ const Report = () => {
                     Volver a Pagina Principal
                 </Button>
             </div>
-        {/*----------------------------------------------------------------------------------------------------*/}  
-            <Tabs 
-                defaultActiveKey="subject" 
-                id="uncontrolled-tab-example" 
-                className="mb-3" 
+            {/*----------------------------------------------------------------------------------------------------*/}
+            <Tabs
+                defaultActiveKey="subject"
+                id="uncontrolled-tab-example"
+                className="mb-3"
                 onSelect={(key) => setActiveTab(key)}
             >
                 {/* Pestaña de Materias */}
                 <Tab eventKey="subject" title="Materias">
-                    <div id="subject" className="d-flex gap-5"> 
+                    <div id="subject" className="d-flex gap-5">
                         <div className="w-25">
-                        <h2 className="text-light">Asignatura</h2>
-                        <ButtonGroup vertical className="w-100">
-                        {listSubjects2}
-                        </ButtonGroup>
+                            <h2 className="text-light mb-3">Asignatura</h2>
+                            <ListGroup>
+                                {listSubjects2}
+                            </ListGroup>
+                            {/* <ButtonGroup vertical className="w-100">
+                                 {listSubjects2}
+                            </ButtonGroup> */}
                         </div>
-                    
+
                         <div className="w-75">
-                            <h2 className="text-light">Resumen de Notas de la Materia</h2>
-                        {activeSubject && (
-                            <Table striped bordered hover responsive="sm" variant="dark" className="mt-4">
-                                <thead>
-                                    <tr>
-                                        <th>Asignación</th>
-                                        <th>Descripción</th>
-                                        <th>Nota</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {listGrades}
-                                </tbody>
-                            </Table>
-                        )}
+                            <h2 className="text-light mb-3">Resumen de Notas de la Materia</h2>
+                            {activeSubject && (
+                                <Table striped bordered hover responsive="sm" variant="dark">
+                                    <thead>
+                                        <tr>
+                                            <th>Asignación</th>
+                                            <th>Descripción</th>
+                                            <th>Nota</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {listGrades}
+                                    </tbody>
+                                </Table>
+                            )}
                         </div>
                     </div>
                 </Tab>

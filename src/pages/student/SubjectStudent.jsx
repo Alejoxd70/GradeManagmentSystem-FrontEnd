@@ -6,10 +6,14 @@ import { useEffect, useState } from "react";
 
 const SubjectStudent = () => {
     const [subjects, setSubjects] = useState([]);
+   
+    
 
     useEffect(() => {
         getSubjects();
     }, []);
+
+    
 
     const getSubjects = async () => {
         try {
@@ -22,11 +26,10 @@ const SubjectStudent = () => {
     };
 
     const listSubject = subjects.map(subject => (
-        <tr key={subject.id}>
-            <td className="text-center">{subject.id}</td>
-            <td className="text-center">{subject.subjectname}</td>
+        <tr key={subject.id} className="text-center">
+            <td>{subject.subjectname}</td>
             <td className="d-flex justify-content-center g-3 gap-2">
-                <Button variant="info" as={Link} to={`/student/assignments/`}>
+                <Button variant="info" as={Link} to={`/student/assignments/${subject.id}`}>
                     <i className="bi bi-eye-fill"></i>
                 </Button>
             </td>
@@ -36,13 +39,12 @@ const SubjectStudent = () => {
     return (
         <>
             <h1 className="text-center text-light mt-4">Materias</h1>
-            <div>
+            <div className="w-75">
                 <Table striped bordered hover responsive="sm" variant="dark">
                     <thead>
-                        <tr>
-                            <th className="text-center">Id</th>
-                            <th className="text-center">Materia</th>
-                            <th className="text-center">Detalles</th>
+                        <tr className="text-center">
+                            <th>Materia</th>
+                            <th>Detalles</th>
                         </tr>
                     </thead>
                     <tbody>

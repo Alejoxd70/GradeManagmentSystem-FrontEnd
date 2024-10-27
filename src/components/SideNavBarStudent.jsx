@@ -22,7 +22,7 @@ const SideNavBarStudent = () => {
                         </Nav.Item>
 
 
-                        <Nav.Link className="nav-link text-white" eventKey="subjects" as={Link} to={"/student/subjects"}><i className="bi bi-book mx-2"></i>Materia</Nav.Link>
+                        <Nav.Link className="nav-link text-white" eventKey="subjects" as={Link} to={"/student/subjects"}><i className="bi bi-book mx-2"></i>Materias</Nav.Link>
                     </div>
 
                     <div className="d-flex align-items-center px-4">

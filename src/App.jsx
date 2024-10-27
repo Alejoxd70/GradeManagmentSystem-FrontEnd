@@ -119,7 +119,7 @@ function App() {
                             {/*subjectstudent*/}
                             <Route path='/student/subjects' element={<SubjectStudent/>}/>
                             {/*assigmentstudent*/}
-                            <Route path='/student/assignments/' element={<AssigmentStudent/>}/>
+                            <Route path='/student/assignments/:id' element={<AssigmentStudent/>}/>
                             
                         </Route>
 
