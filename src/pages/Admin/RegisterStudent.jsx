@@ -8,8 +8,9 @@ import { InputGroup, Form } from "react-bootstrap";
 
 const RegisterStudent = (
 ) => {
-        // Variables
+        // Variable[s
         const [groupYears, setGroupYears] = useState([]);
+        const [selectYears, setSelectYears] = useState([])
         const [filteredData, setFilteredData] = useState([]);
         const [filter, setFilter] = useState('');
 
@@ -24,6 +25,10 @@ const RegisterStudent = (
             try {
                 const { data } = await axiosClient.get("/GroupYear")
                 console.log(data);
+                const uniqueYears = data.filter((item, index, self) => {
+                    return index === self.findIndex((data) => data.year === item.year)
+                })
+                setSelectYears(uniqueYears);
                 setGroupYears(data)
             } catch (error) {
                 console.log(error);
@@ -33,7 +38,7 @@ const RegisterStudent = (
         useEffect(() => {
             // Filter the data based on the selected age filter
             if (filter) {
-                setFilteredData(groupYears.filter(groupYear => groupYear.year === filter));
+                setFilteredData(groupYears.filter((groupYear) => groupYear.year === filter));
     
             } else {
                 setFilteredData(groupYears); // If no filter is selected, show all
@@ -41,7 +46,7 @@ const RegisterStudent = (
         }, [filter, groupYears]);
     
 
-    const listGroups = groupYears.map(groupYear => (
+    const listGroups = selectYears.map(groupYear => (
         <option key={groupYear.id} value={groupYear.year}>{groupYear.year}</option>
     ));
 
