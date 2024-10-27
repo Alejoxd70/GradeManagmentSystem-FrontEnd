@@ -4,15 +4,17 @@ import Message from "../../components/Message";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import axiosClient from "../../config/axios";
+import UseAdmin from "../../hooks/UseAdmin";
 
 const UserForm = () => {
     const [validated, setValidated] = useState(false);
     const [message, setMessage] = useState({});
-    const [userTypes, setUserTypes] = useState([]);
+    // const [userTypes, setUserTypes] = useState([]);
     const [isSummiting, setIsSubmmiting] = useState(false)
     const { id } = useParams();
     const navigate = useNavigate();
+    const { getUser, userTypes, createUser, updateUser } = UseAdmin();
+
     console.log(id);
 
 
@@ -29,40 +31,17 @@ const UserForm = () => {
     useEffect(() => {
         if (id) {
             try {
-                const getUser = async () => {
-                    const { data } = await axiosClient.get(`/Users/${id}`);
-                    const renewData = {
-                        name: data.name,
-                        lastName: data.lastName,
-                        email: data.email,
-                        password: "",
-                        identification: data.identification,
-                        userTypeId: data.userType.id,
-                    }
-                    setFormData(renewData);
+                const fechtUserData = async () => {
+                    const user = await getUser(id);
+                    setFormData(user)
+                    
                 }
-                getUser();
-            } catch (error) {
-                console.log(error);
-            }
-
-        }
-    }, [id]);
-
-    // Fetch userTypes
-    useEffect(() => {
-        const getUserTypes = async () => {
-            try {
-                const { data } = await axiosClient.get("/UserTypes");
-                setUserTypes(data);
-                console.log(data);
-
+                fechtUserData();
             } catch (error) {
                 console.log(error);
             }
         }
-        getUserTypes();
-    }, []);
+    }, [id, getUser]);
 
     console.log(userTypes);
 
@@ -91,33 +70,53 @@ const UserForm = () => {
 
             if (!id) {
                 try {
-                    const queryString = new URLSearchParams(formData).toString();
-                    const url = `/Users?${queryString}`
-
-                    const { data } = await axiosClient.post(url)
-                    setMessage({ text: data, variant: "success" })
+                    const response = await createUser(formData);
+                    setMessage({ text: response, variant: "success" });
                     setTimeout(() => {
                         navigate("/admin/users");
                     }, 2000);
                 } catch (error) {
                     console.log(error);
                 }
+                // try {
+                //     const queryString = new URLSearchParams(formData).toString();
+                //     const url = `/Users?${queryString}`
+
+                //     const { data } = await axiosClient.post(url)
+                //     setMessage({ text: data, variant: "success" })
+                //     setTimeout(() => {
+                //         navigate("/admin/users");
+                //     }, 2000);
+                // } catch (error) {
+                //     console.log(error);
+                // }
             } else {
                 try {
-                    if (!formData.password) {
-                        delete formData.password;
-                    }
-                    const queryString = new URLSearchParams(formData).toString();
-                    const url = `/Users/${id}?${queryString}`
-
-                    const { data } = await axiosClient.put(url)
-                    setMessage({ text: data, variant: "success" })
+                    const response = await updateUser(id, formData)
+                    console.log(response);
+                    
+                    setMessage({ text: response, variant: "success" })
                     setTimeout(() => {
                         navigate("/admin/users");
                     }, 2000);
                 } catch (error) {
                     console.log(error);
                 }
+                // try {
+                //     if (!formData.password) {
+                //         delete formData.password;
+                //     }
+                //     const queryString = new URLSearchParams(formData).toString();
+                //     const url = `/Users/${id}?${queryString}`
+
+                //     const { data } = await axiosClient.put(url)
+                //     setMessage({ text: data, variant: "success" })
+                //     setTimeout(() => {
+                //         navigate("/admin/users");
+                //     }, 2000);
+                // } catch (error) {
+                //     console.log(error);
+                // }
             }
 
         }
@@ -196,7 +195,7 @@ const UserForm = () => {
                                 name="password"
                                 onChange={handleOnChange}
                                 type="password"
-                                placeholder={ id ? "Modifica contraseña (si es necesario)" : "Tu contraseña"}
+                                placeholder={id ? "Modifica contraseña (si es necesario)" : "Tu contraseña"}
                                 required={!id}
                                 autoComplete="current-password"
                                 className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
@@ -248,12 +247,12 @@ const UserForm = () => {
                     </Form.Group>
 
                     <div className="d-flex justify-content-between align-items-end mt-4">
-                        <Button 
-                            type="submit" 
+                        <Button
+                            type="submit"
                             className="btn btn-light px-4 py-2 rounded-pill shadow"
                             disabled={isSummiting}
                         >
-                            
+
                             {id ? "Actualizar" : "Crear"} usuario
                         </Button>
                         <Link className="text-light link-underline-opacity-0 link-underline-opacity-100-hover" to="/admin/users">

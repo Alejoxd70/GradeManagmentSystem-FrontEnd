@@ -5,34 +5,14 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { InputGroup, Form } from "react-bootstrap";
+import UseAdmin from "../../hooks/UseAdmin";
 
 
 const User = () => {
     // Variables
-    const [users, setUsers] = useState([]);
-    const [userTypes, setUserTypes] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [filteredData, setFilteredData] = useState([]);
     const [filter, setFilter] = useState('');
-
-    // useEffect solo se llama una vez cuando renderizamos
-    useEffect(() => {
-        // LLama la funcion getUsers
-        getUsers();
-        getUserTypes();
-    }, []);
-
-    // Busca los registros en la base de datos de Users
-    const getUsers = async () => {
-        try {
-            const { data } = await axiosClient.get("/Users")
-            console.log(data);
-            setUsers(data)
-            setLoading(false);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const {users, userTypes, getUsers, loadingFetch} = UseAdmin();
 
     useEffect(() => {
         // Filter the data based on the selected age filter
@@ -45,17 +25,6 @@ const User = () => {
     }, [filter, users]);
 
 
-    // Fetch userTypes
-    const getUserTypes = async () => {
-        try {
-            const { data } = await axiosClient.get("/UserTypes");
-            setUserTypes(data);
-            console.log(data);
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
     const listUserTypes = userTypes.map(userType => (
         <option key={userType.id} value={userType.id}>{userType.userTypeName}</option>
     ));
@@ -116,12 +85,11 @@ const User = () => {
     const handleOnChangeFilter = e => {
         console.log("hello");
         console.log(e.target.value);
-
         setFilter(e.target.value)
     }
 
     // Mientras busca los users mostrar loading
-    if (loading) return "Loading....";
+    if (loadingFetch) return "Loading....";
 
     // Lo que se va a mostrar
     return (
