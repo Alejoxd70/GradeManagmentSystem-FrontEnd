@@ -66,7 +66,7 @@ const RegisterStudent = (
             <tr key={groupYear.id}>
                 <td>{groupYear.id}</td>
                 <td>{groupYear.year}</td>
-                <td>{groupYear.student.student_code}</td>
+                <td>{groupYear.student.user.name}</td>
                 <td>{groupYear.group.groupName}</td>
                 <td className="d-flex g-3 gap-2">
                     <Button variant="info" as={Link} to={`/admin/groupYears/edit/${groupYear.id}`}><i className="bi bi-pencil-square"></i>
