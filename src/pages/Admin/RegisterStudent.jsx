@@ -4,11 +4,14 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { InputGroup, Form } from "react-bootstrap";
 
 const RegisterStudent = (
 ) => {
         // Variables
         const [groupYears, setGroupYears] = useState([]);
+        const [filteredData, setFilteredData] = useState([]);
+        const [filter, setFilter] = useState('');
 
         // useEffect solo se llama una vez cuando renderizamos
         useEffect(() => {
@@ -27,8 +30,24 @@ const RegisterStudent = (
     
             }
         }
+        useEffect(() => {
+            // Filter the data based on the selected age filter
+            if (filter) {
+                setFilteredData(groupYears.filter(groupYear => groupYear.year === filter));
     
+            } else {
+                setFilteredData(groupYears); // If no filter is selected, show all
+            }
+        }, [filter, groupYears]);
     
+
+    const listGroups = groupYears.map(groupYear => (
+        <option key={groupYear.id} value={groupYear.year}>{groupYear.year}</option>
+    ));
+
+    console.log(filteredData);
+
+
         // Cuando presionamos delete
         const handleDeleteButton = e => {
             const id = e.target.id;
@@ -62,7 +81,7 @@ const RegisterStudent = (
         }
     
         // De todos los grupos de la base de datos crea una lista
-        const listGroups = groupYears.map(groupYear => (
+        const listGroupYears = filteredData.map(groupYear => (
             <tr key={groupYear.id}>
                 <td>{groupYear.id}</td>
                 <td>{groupYear.year}</td>
@@ -75,9 +94,29 @@ const RegisterStudent = (
                 </td>
             </tr>
         ));
+
+        const handleOnChangeFilter = e => {
+            console.log(e.target.value);
+            setFilter(e.target.value)
+        }
     return(
         <>
             <h1 className="text-center text-light mt-4">Estudiantes en grupos</h1>
+            {/* Filtrar */}
+            <Form.Group className="d-flex justify-content-between align-items-center mb-3">
+                <Form.Label className="w-25 mb-0 text-light">Filtrar por año</Form.Label>
+                <InputGroup hasValidation className="w-75">
+                    <Form.Select
+                        name="groupYearId"
+                        onChange={handleOnChangeFilter}
+                        required
+                        className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
+                    >
+                        <option value="" defaultChecked>Mostrar Todos</option>
+                        {listGroups}
+                    </Form.Select>
+                </InputGroup>
+            </Form.Group>
                          {/* botón agregar grupos */}
                          <div className="d-flex justify-content-end">
                 <Button className="mb-2" as={Link} to="/admin/groupYears/create">Agregar nuevo estudiante en grupo</Button>
@@ -98,7 +137,7 @@ const RegisterStudent = (
                     </thead>
                     <tbody>
                         {/* Mostrar lista de grupos */}
-                        {listGroups}
+                        {listGroupYears}
                     </tbody>
                 </Table>
             </div>
