@@ -19,6 +19,7 @@ const User = () => {
     useEffect(() => {
         // LLama la funcion getUsers
         getUsers();
+        getUserTypes();
     }, []);
 
     // Busca los registros en la base de datos de Users
@@ -43,21 +44,18 @@ const User = () => {
         }
     }, [filter, users]);
 
+
     // Fetch userTypes
-    useEffect(() => {
-        const getUserTypes = async () => {
-            try {
-                const { data } = await axiosClient.get("/UserTypes");
-                setUserTypes(data);
-                console.log(data);
+    const getUserTypes = async () => {
+        try {
+            const { data } = await axiosClient.get("/UserTypes");
+            setUserTypes(data);
+            console.log(data);
 
-            } catch (error) {
-                console.log(error);
-            }
+        } catch (error) {
+            console.log(error);
         }
-        getUserTypes();
-    }, []);
-
+    }
     const listUserTypes = userTypes.map(userType => (
         <option key={userType.id} value={userType.id}>{userType.userTypeName}</option>
     ));

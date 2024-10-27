@@ -130,7 +130,7 @@ const UserForm = () => {
 
             <div className="col-md-10 shadow-lg p-5 mb-5 bg-dark text-light rounded-5 w-50 mx-auto mt-4">
                 <Form noValidate validated={validated} onSubmit={handleSubmit} className="bg-dark p-3 rounded-4" method="post">
-                    <h2 className="text-center mb-4 text-light">{id ? "Update" : "Create"} a user 💀</h2>
+                    <h2 className="text-center mb-4 text-light">{id ? "Actualiza" : "Crea"} un Usuario</h2>
 
                     <Form.Group className="d-flex justify-content-between align-items-center mb-3" controlId="controlName">
                         <Form.Label className="w-25 mb-0 text-light">Nombres</Form.Label>
@@ -196,7 +196,7 @@ const UserForm = () => {
                                 name="password"
                                 onChange={handleOnChange}
                                 type="password"
-                                placeholder="Contraseña"
+                                placeholder={ id ? "Modifica contraseña (si es necesario)" : "Tu contraseña"}
                                 required={!id}
                                 autoComplete="current-password"
                                 className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"

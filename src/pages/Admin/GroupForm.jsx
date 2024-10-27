@@ -94,7 +94,6 @@ const GroupForm = () => {
 
     return (
         <>
-        <h1 className="text-center text-light mt-4">GroupForm</h1>
         <div className="col-md-10 shadow-lg p-5 mb-5 bg-dark text-light rounded-5 w-50 mx-auto mt-4">
               <Form noValidate validated={validated} onSubmit={handleSubmit} className="bg-dark p-3 rounded-4" method="post">
                     <h1 className="text-center mb-4 text-light">{id ? "Actualizar" : "Crear"} un Grupo </h1>

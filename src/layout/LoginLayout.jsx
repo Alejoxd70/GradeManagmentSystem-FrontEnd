@@ -6,7 +6,7 @@ const LoginLayout = () => {
     return(
         <>
             <main>
-                <Container className="d-flex flex-column align-items-center justify-content-center vh-100 col-md-4">
+                <Container className="d-flex flex-column align-items-center justify-content-center vh-100 col-md-4 login-layout">
                     <Outlet/>
                 </Container>
             </main>

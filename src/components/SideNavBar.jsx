@@ -1,8 +1,11 @@
 import Nav from "react-bootstrap/Nav"
 import NavDropdown from "react-bootstrap/NavDropdown"
 import { Link } from "react-router-dom"
+import UseAuth from "../hooks/UseAuth"
 
 const SideNavBar = () => {
+    const {logOut, auth} = UseAuth();
+
 
     return (
         <>
@@ -43,9 +46,9 @@ const SideNavBar = () => {
                     
                     <div className="d-flex align-items-center px-4">
                         <i className="bi bi-person-fill"></i>
-                        <NavDropdown title="Pepito" id="nav-dropdown" menuVariant="dark">
+                        <NavDropdown title={auth?.name} id="nav-dropdown" menuVariant="dark">
                             <NavDropdown.Item eventKey="profile" as={Link} to={"/admin/profile"}>Perfil</NavDropdown.Item>
-                            <NavDropdown.Item eventKey="logout" as={Link} to ={"/"}>Cerrar sesión</NavDropdown.Item>
+                            <NavDropdown.Item eventKey="logout" as={Link} to ={"/"} onClick={logOut}>Cerrar sesión</NavDropdown.Item>
                         </NavDropdown>
                     </div>
                 </div>
