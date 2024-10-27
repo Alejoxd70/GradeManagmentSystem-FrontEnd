@@ -3,6 +3,8 @@ import axiosClient from "../../config/axios";
 import { Button, Table, Tabs, Tab } from "react-bootstrap";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import UseAuth from "../../hooks/UseAuth";
+
 
 const Report = () => {
     const [subjects, setSubjects] = useState([]);
@@ -10,6 +12,7 @@ const Report = () => {
     const [activeTab, setActiveTab] = useState("groupYear");
     const [activeSubject, setActiveSubject] = useState(null);
     const [filteredData, setFilteredData] = useState([]);
+    const {auth}=UseAuth();
 
     useEffect(() => {
         getSubjects();
@@ -95,7 +98,7 @@ const Report = () => {
 
     // Función para manejar la selección de una materia y cargar sus asignaciones
     const handleViewAssignments = (subjectId) => {
-        setFilteredData(grades.filter(grade=>grade.assigment.subjectTeacher.subject.id === subjectId))
+        setFilteredData(grades.filter(grade=>grade.assigment.subjectTeacher.subject.id === subjectId && grade.student.user.id === auth.id))
         setActiveSubject(subjectId);
         getGrades(subjectId);
     };
