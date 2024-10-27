@@ -1,8 +1,11 @@
 import Nav from "react-bootstrap/Nav"
 import NavDropdown from "react-bootstrap/NavDropdown"
 import { Link } from "react-router-dom"
+import UseAuth from "../hooks/UseAuth"
 
 const SideNavBarStudent = () => {
+
+    const { auth, logOut } = UseAuth();
 
     return (
         <>
@@ -11,7 +14,7 @@ const SideNavBarStudent = () => {
                 <div className="sidebar d-flex flex-column justify-content-between">
                     <div>
                         <Nav.Item className="nav-item">
-                            <Nav.Link className="nav-link text-white"  eventKey="homepage" as={Link} to={"/student/groups"}><i className="bi bi-collection mx-2"></i>Pagina Principal</Nav.Link>
+                            <Nav.Link className="nav-link text-white" eventKey="homepage" as={Link} to={"/student/groups"}><i className="bi bi-collection mx-2"></i>Pagina Principal</Nav.Link>
                         </Nav.Item>
 
                         <Nav.Item className="nav-item">
@@ -24,9 +27,9 @@ const SideNavBarStudent = () => {
 
                     <div className="d-flex align-items-center px-4">
                         <i className="bi bi-person-fill"></i>
-                        <NavDropdown title="Pepito" id="nav-dropdown" menuVariant="dark">
+                        <NavDropdown title={auth.name} id="nav-dropdown" menuVariant="dark">
                             <NavDropdown.Item eventKey="profile" as={Link} to={"/student/profile"}>Perfil</NavDropdown.Item>
-                            <NavDropdown.Item eventKey="logout" as={Link} to ={"/"}>Cerrar sesión</NavDropdown.Item>
+                            <NavDropdown.Item eventKey="logout" as={Link} to={"/"} onClick={logOut}>Cerrar sesión</NavDropdown.Item>
                         </NavDropdown>
                     </div>
                 </div>

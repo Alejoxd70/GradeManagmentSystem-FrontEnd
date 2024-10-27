@@ -3,17 +3,26 @@ import Container from "react-bootstrap/Container";
 import SideNavBar from "../components/SideNavBar";
 
 
+
 const AdminLayout = () => {
+    // const { auth } = UseAuth();
+    // console.log(auth);
+
+    // const userType = auth.userType.userTypeName ?? "";
+    // console.log(userType);
+    
+
     return (
         <>
-            <Container fluid className="d-flex p-0">
-                    <SideNavBar/>
+            {/* {userType === "Administrador" ? ( */}
+                <Container fluid className="d-flex p-0">
+                    <SideNavBar />
 
-                    
                     <Container className="container-section">
-                        <Outlet/>
+                        <Outlet />
                     </Container>
-            </Container>
+                </Container>
+            {/* ) : <Navigate to={"/"} />} */}
         </>
     );
 }

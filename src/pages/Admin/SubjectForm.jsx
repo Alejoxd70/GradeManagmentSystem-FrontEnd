@@ -17,7 +17,7 @@ const SubjectForm = () => {
 
 
     const [formData, setFormData] = useState({
-        subjectname: "",
+        name: "",
         description: "",
     });
 
@@ -28,7 +28,7 @@ const SubjectForm = () => {
                 const getSubject = async () => {
                     const { data } = await axiosClient.get(`/Subject/${id}`);
                     const renewData = {
-                        subjectname: data.subjectname,
+                        name: data.subjectname,
                         description: data.description,
                     }
                     setFormData(renewData);
@@ -129,7 +129,7 @@ const SubjectForm = () => {
                         <InputGroup hasValidation className="w-75">
                             <Form.Control
                                 name="subjectname"
-                                value={formData.subjectname}
+                                value={formData.name}
                                 onChange={handleOnChange}
                                 type="text"
                                 placeholder="Nombre de la materia"

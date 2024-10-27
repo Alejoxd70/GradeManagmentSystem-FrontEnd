@@ -1,32 +1,12 @@
 import { Card } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
-import { useEffect, useState } from "react";
-import axiosClient from "../../config/axios";
 import ListGroup from "react-bootstrap/ListGroup";
 import profileImage from "../../assets/profile.jpg"
+import UseAuth from "../../hooks/UseAuth";
 
 const Profile = () => {
-    const [users, setUsers] = useState({});
-    const [loading, setLoading] = useState(true)
+    const { auth } = UseAuth();
 
-    useEffect(() => {
-        // LLama la funcion getUsers
-        getUsers();
-    }, []);
-
-    // Busca los registros en la base de datos de Users
-    const getUsers = async () => {
-        try {
-            const { data } = await axiosClient.get("/Users/6")
-            console.log(data);
-            setUsers(data)
-            setLoading(false)
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    if (loading) return "Loading";
 
     return (
         <>
@@ -37,19 +17,19 @@ const Profile = () => {
                         <Image src={profileImage} roundedCircle width={100} fluid />
                     </div>
                     <Card.Body>
-                        <Card.Title className="text-center">{users.name} {users.lastName}</Card.Title>
+                        <Card.Title className="text-center">{auth?.name} {auth?.lastName}</Card.Title>
                         <Card.Subtitle className="my-3  text-white text-center">
                             Información
                         </Card.Subtitle>
                         <ListGroup>
                             <ListGroup.Item action variant="secondary">
-                                <strong>Email:</strong> {users.email}
+                                <strong>Email:</strong> {auth?.email}
                             </ListGroup.Item>
                             <ListGroup.Item action variant="secondary">
-                                <strong>Identification:</strong> {users.identification}
+                                <strong>Identification:</strong> {auth?.identification}
                             </ListGroup.Item>
                             <ListGroup.Item action variant="secondary">
-                                <strong>UserType:</strong> {users.userType.userTypeName}
+                                <strong>Tipo de usuario:</strong> {auth?.userType.userTypeName}
                             </ListGroup.Item>
                         </ListGroup>
                     </Card.Body>
