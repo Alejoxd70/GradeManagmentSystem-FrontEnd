@@ -4,10 +4,15 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { InputGroup, Form } from "react-bootstrap";
 
 const Assignments = () => {
             // Variables
             const [assignments, setAssignments] = useState([]);
+            const [subjects, setSubjects] = useState([]);
+            //const [loading, setLoading] = useState(true);
+            const [filteredData, setFilteredData] = useState([]);
+            const [filter, setFilter] = useState('');
 
             // useEffect solo se llama una vez cuando renderizamos
             useEffect(() => {
@@ -26,6 +31,36 @@ const Assignments = () => {
         
                 }
             }
+
+            useEffect(() => {
+                // Filter the data based on the selected age filter
+                if (filter) {
+                    setFilteredData(assignments.filter(assignment => assignment.subjectTeacher.subject.id === parseInt(filter)));
+        
+                } else {
+                    setFilteredData(assignments); // If no filter is selected, show all
+                }
+            }, [filter, assignments]);
+
+            useEffect(() => {
+                const getSubject = async () => {
+                    try {
+                        const { data } = await axiosClient.get("/Subject");
+                        setSubjects(data);
+                        console.log(data);
+        
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+                getSubject();
+            }, []);
+
+            const listSubjects = subjects.map(subject => (
+                <option key={subject.id} value={subject.id}>{subject.subjectname}</option>
+            ));
+        
+            console.log(filteredData);
         
         
             // Cuando presionamos delete
@@ -58,10 +93,11 @@ const Assignments = () => {
         
                     }
                 });
+                
             }
         
             // De todos las asignaciones de la base de datos crea una lista
-            const listAssignments = assignments.map(assignment => (
+            const listAssignments = filteredData.map(assignment => (
                 <tr key={assignment.id}>
                     <td>{assignment.id}</td>
                     <td>{assignment.name}</td>
@@ -75,9 +111,32 @@ const Assignments = () => {
                     </td>
                 </tr>
             ));
+            const handleOnChangeFilter = e => {
+                console.log("hello");
+                console.log(e.target.value);
+        
+                setFilter(e.target.value)
+            }
     return(
         <>
             <h1 className="text-center text-light mt-4">Asignaciones</h1>
+             {/* Filtrar */}
+            <Form.Group className="d-flex justify-content-between align-items-center mb-3">
+                <Form.Label className="w-25 mb-0 text-light">Filtrar por materia</Form.Label>
+                <InputGroup hasValidation className="w-75">
+                    <Form.Select
+                        name="subjectId"
+                        onChange={handleOnChangeFilter}
+                        required
+                        className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
+                    >
+                        <option value="" defaultChecked>Mostrar Todos</option>
+                        {listSubjects}
+                    </Form.Select>
+                </InputGroup>
+            </Form.Group>       
+                    
+                    
                      {/* botón agregar asignaciones */}
             <div className="d-flex justify-content-end">
                 <Button className="mb-2" as={Link} to="/admin/assignments/create">Agregar una nueva asignacion</Button>
