@@ -82,7 +82,7 @@ const TeacherGradeForm = () => {
     console.log(student);
 
     const listStudents = student.map(student => (
-        <option key={student.id} value={student.id}>{student.student_code}</option>
+        <option key={student.id} value={student.id}>{student.user.name}</option>
     ));
 
     const handleOnChange = e => {
