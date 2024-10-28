@@ -15,7 +15,7 @@ const RegisterTeacher = () => {
     const [filteredData, setFilteredData] = useState([]);
     const [filter, setFilter] = useState('');
 
-    
+
     // useEffect solo se llama una vez cuando renderizamos
     useEffect(() => {
         // LLama la funcion getRegisterTeachers
@@ -45,7 +45,7 @@ const RegisterTeacher = () => {
         }
     }, [filter, registerTeachers]);
 
-    
+
 
     // Fetch userTypes
 
@@ -141,7 +141,7 @@ const RegisterTeacher = () => {
                         name="groupYearId"
                         onChange={handleOnChangeFilter}
                         required
-                        className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
+                        className="border-0 bg-dark text-light p-3 rounded-3 bg-opacity-50"
                     >
                         <option value="" defaultChecked>Mostrar Todos</option>
                         {listGroupYears}
@@ -149,7 +149,7 @@ const RegisterTeacher = () => {
                 </InputGroup>
             </Form.Group>
 
-            {/* botón agregar nueva matricula de profesor*/ }
+            {/* botón agregar nueva matricula de profesor*/}
             <div className="d-flex justify-content-end">
                 <Button className="mb-2" as={Link} to="/admin/RegisterTeacher/create">Asignar nuevo profesor</Button>
             </div>

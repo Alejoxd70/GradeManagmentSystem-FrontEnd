@@ -82,7 +82,7 @@ const TeacherGradeForm = () => {
     console.log(student);
 
     const listStudents = student.map(student => (
-        <option key={student.id} value={student.id}>{student.student_code}</option>
+        <option key={student.id} value={student.id}>{student.user.name}</option>
     ));
 
     const handleOnChange = e => {
@@ -179,7 +179,7 @@ const TeacherGradeForm = () => {
                                 //autoComplete="username"
                                 className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
                             >
-                            {!formData.assigmentId && (
+                                {!formData.assigmentId && (
                                     <option disabled value="">Selecciona una asignacion</option>
                                 )}
                                 {listAssigments}
@@ -204,7 +204,7 @@ const TeacherGradeForm = () => {
                                 //autoComplete="username"
                                 className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
                             >
-                            {!formData.studentId && (
+                                {!formData.studentId && (
                                     <option disabled value="">Selecciona un estudiante</option>
                                 )}
                                 {listStudents}
@@ -218,12 +218,12 @@ const TeacherGradeForm = () => {
 
 
                     <div className="d-flex justify-content-between align-items-end mt-4">
-                        <Button 
-                            type="submit" 
+                        <Button
+                            type="submit"
                             className="btn btn-light px-4 py-2 rounded-pill shadow"
                             disabled={isSummiting}
                         >
-                            
+
                             {id ? "Actualizar" : "Crear"} calificacion
                         </Button>
                         <Link className="text-light link-underline-opacity-0 link-underline-opacity-100-hover" to="/teacher/grades">

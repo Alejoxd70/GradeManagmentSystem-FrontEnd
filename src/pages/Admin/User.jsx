@@ -103,10 +103,10 @@ const User = () => {
                         name="userTypeId"
                         onChange={handleOnChangeFilter}
                         required
-                        className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
+                        className="border-0 bg-dark text-light p-3 rounded-3 bg-opacity-50"
                     >
                         <option value="" defaultChecked>Mostrar Todos</option>
-                        {listUserTypes}
+                        {listUserTypes} 
                     </Form.Select>
                 </InputGroup>
             </Form.Group>
