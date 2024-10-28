@@ -69,7 +69,7 @@ const TeacherGrade = () => {
             <td>{grade.id}</td>
             <td>{grade.value}</td>
             <td>{grade.assigment.name}</td>
-            <td>{grade.student.student_code}</td>
+            <td>{grade.student.user.name}</td>
             <td className="d-flex g-3 gap-2">
                 <Button variant="info" as={Link} to={`//teacher/grades/edit/${grade.id}`}><i className="bi bi-pencil-square"></i>
                 </Button>
