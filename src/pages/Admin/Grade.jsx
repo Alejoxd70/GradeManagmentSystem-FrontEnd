@@ -4,10 +4,14 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { InputGroup, Form } from "react-bootstrap";
 
 const Grade = () => {
     const [grades, setGrades] = useState([]);
+    const [assigments, setAssigments] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [filteredData, setFilteredData] = useState([]);
+    const [filter, setFilter] = useState('');
 
     // useEffect solo se llama una vez cuando renderizamos
     useEffect(() => {
@@ -27,6 +31,37 @@ const Grade = () => {
 
         }
     }
+
+    useEffect(() => {
+        // Filter the data based on the selected age filter
+        if (filter) {
+            setFilteredData(grades.filter(grade => grade.assigment.id === parseInt(filter)));
+
+        } else {
+            setFilteredData(grades); // If no filter is selected, show all
+        }
+    }, [filter, grades]);
+
+    useEffect(() => {
+        const getAssigments = async () => {
+            try {
+                const { data } = await axiosClient.get("/Assigments");
+                setAssigments(data);
+                console.log(data);
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getAssigments();
+    }, []);
+
+    const listAssigments = assigments.map(assigment => (
+        <option key={assigment.id} value={assigment.id}>{assigment.name}</option>
+    ));
+
+    console.log(filteredData);
+
 
     // Mientras busca los users mostrar loading
     if (loading) return "Loading....";
@@ -64,7 +99,7 @@ const Grade = () => {
     }
 
     // De todos las notas de la base de datos crea una lista
-    const listGrades = grades.map(grade => (
+    const listGrades = filteredData.map(grade => (
         <tr key={grade.id}>
             <td>{grade.id}</td>
             <td>{grade.value}</td>
@@ -78,10 +113,34 @@ const Grade = () => {
         </tr>
     ));
 
+    const handleOnChangeFilter = e => {
+        console.log("hello");
+        console.log(e.target.value);
+
+        setFilter(e.target.value)
+    }
+
     // Lo que se va a mostrar
     return (
         <>
             <h1 className="text-center text-light mt-4">Notas</h1>
+
+
+            {/* Filtrar */}
+            <Form.Group className="d-flex justify-content-between align-items-center mb-3">
+                <Form.Label className="w-25 mb-0 text-light">Filtrar por Asignacion</Form.Label>
+                <InputGroup hasValidation className="w-75">
+                    <Form.Select
+                        name="assigmentId"
+                        onChange={handleOnChangeFilter}
+                        required
+                        className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
+                    >
+                        <option value="" defaultChecked>Mostrar Todos</option>
+                        {listAssigments}
+                    </Form.Select>
+                </InputGroup>
+            </Form.Group>
 
             {/* botón agregar nota */}
             <div className="d-flex justify-content-end">
