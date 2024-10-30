@@ -102,9 +102,9 @@ const Grade = () => {
     const listGrades = filteredData.map(grade => (
         <tr key={grade.id}>
             <td>{grade.id}</td>
-            <td>{grade.value}</td>
             <td>{grade.assigment.name}</td>
             <td>{grade.student.user.name} {grade.student.user.lastName}</td>
+            <td>{grade.value}</td>
             <td className="d-flex g-3 gap-2">
                 <Button variant="info" as={Link} to={`/admin/Grade/edit/${grade.id}`}><i className="bi bi-pencil-square"></i>
                 </Button>
@@ -154,9 +154,9 @@ const Grade = () => {
                         <tr>
                             {/* Campos de la base de datos */}
                             <th>Id</th>
-                            <th>Notas</th>
-                            <th>Asignaciones</th>
-                            <th>Estudiantes</th>
+                            <th>Asignacion</th>
+                            <th>Estudiante</th>
+                            <th>Nota</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>

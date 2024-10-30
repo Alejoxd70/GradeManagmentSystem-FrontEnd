@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
                 roleType,
                 navigate,
                 loading,
-                authLogin
+                authLogin,
             }}
         >
             {children}

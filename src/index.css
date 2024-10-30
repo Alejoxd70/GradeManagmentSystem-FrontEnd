@@ -41,17 +41,15 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 260px;
+    /* width: 260px; */
     height: 100%;
     background-color: #343a40;
     padding: 20px;
     color: white;
-    overflow-y: auto; /* Permite scroll interno si hay mucho contenido */
+    overflow-y: auto; 
 }
 
-.footer {
-    margin-left: 250px;
-}
+
 .image-homepage::before{
     content: "";
     background-image: url("./assets/pioXII.jpg");
@@ -60,6 +58,20 @@ body {
     opacity: 0.4;
     position: absolute;
     height: 40rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Place behind the content */
+}
+.image-login::before{
+    content: "";
+    background-image: url("./assets/pioXII.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    position: absolute;
+    height: auto;
     top: 0;
     left: 0;
     right: 0;
@@ -77,6 +89,10 @@ body {
     align-items: center;
     text-align: center;
 }
+.image-login {
+    background-size: cover;
+    background-position: center;
+}
 .nav-pills {
     width: 250px;
 }
@@ -87,8 +103,52 @@ body {
 .login-layout {
     width: 40%;
 }
-
+.footer {
+    margin-left: 269px;
+}
 
 #nav-dropdown {
     color: white;
+}
+.login-container {
+    width: 40%;
+}
+
+.login-container .form-label,
+.login-container .form-control {
+    font-size: 1rem;
+}
+
+.login-container h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.login-container .bg-dark {
+    background-color: #2b2f31 !important;
+}
+
+.login-container .btn-success {
+    background-color: #28a745;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.login-container .btn-success:hover {
+    background-color: #218838;
+}
+
+.login-container .btn-outline-success {
+    border: 1px solid #28a745;
+    color: #28a745;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-container .btn-outline-success:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.login-container .bg-secondary {
+    background-color: #6c757d !important;
 }

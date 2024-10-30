@@ -9,11 +9,13 @@ import UseAdmin from "../../hooks/UseAdmin";
 const UserForm = () => {
     const [validated, setValidated] = useState(false);
     const [message, setMessage] = useState({});
-    // const [userTypes, setUserTypes] = useState([]);
     const [isSummiting, setIsSubmmiting] = useState(false)
+    const [showPassword, setShowPassword] = useState(false);
+    const [passwordFeedback, setPasswordFeedback] = useState("");
     const { id } = useParams();
     const navigate = useNavigate();
     const { getUser, userTypes, createUser, updateUser } = UseAdmin();
+
 
     console.log(id);
 
@@ -34,7 +36,7 @@ const UserForm = () => {
                 const fechtUserData = async () => {
                     const user = await getUser(id);
                     setFormData(user)
-                    
+
                 }
                 fechtUserData();
             } catch (error) {
@@ -53,18 +55,41 @@ const UserForm = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
         console.log(formData);
 
+        if (e.target.name === "password") {
+            validatePassword(e.target.value)
+        }
+
+    }
+
+    const validatePassword = password => {
+        const minLength = password.length >= 8;
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasNumber = /\d/.test(password);
+
+        if (!minLength) {
+            setPasswordFeedback("La contraseña debe tener al menos 8 caracteres.");
+            return (false);
+        } else if (!hasUppercase) {
+            setPasswordFeedback("La contraseña debe incluir al menos una letra mayúscula.");
+            return (false);
+        } else if (!hasNumber) {
+            setPasswordFeedback("La contraseña debe incluir al menos un número.");
+            return (false);
+        } else {
+            setPasswordFeedback("");
+            return (true);
+        }
     }
 
     const handleSubmit = async e => {
+        e.preventDefault();
         const form = e.currentTarget;
-        if (form.checkValidity() === false) {
-            e.preventDefault();
+        if (form.checkValidity() === false || passwordFeedback !== "") {
             e.stopPropagation();
-        }
+        } else {
 
-        setValidated(true);
+            setValidated(true);
 
-        if (form.checkValidity() === true) {
             e.preventDefault();
             setIsSubmmiting(true);
 
@@ -78,23 +103,12 @@ const UserForm = () => {
                 } catch (error) {
                     console.log(error);
                 }
-                // try {
-                //     const queryString = new URLSearchParams(formData).toString();
-                //     const url = `/Users?${queryString}`
 
-                //     const { data } = await axiosClient.post(url)
-                //     setMessage({ text: data, variant: "success" })
-                //     setTimeout(() => {
-                //         navigate("/admin/users");
-                //     }, 2000);
-                // } catch (error) {
-                //     console.log(error);
-                // }
             } else {
                 try {
                     const response = await updateUser(id, formData)
                     console.log(response);
-                    
+
                     setMessage({ text: response, variant: "success" })
                     setTimeout(() => {
                         navigate("/admin/users");
@@ -102,24 +116,11 @@ const UserForm = () => {
                 } catch (error) {
                     console.log(error);
                 }
-                // try {
-                //     if (!formData.password) {
-                //         delete formData.password;
-                //     }
-                //     const queryString = new URLSearchParams(formData).toString();
-                //     const url = `/Users/${id}?${queryString}`
 
-                //     const { data } = await axiosClient.put(url)
-                //     setMessage({ text: data, variant: "success" })
-                //     setTimeout(() => {
-                //         navigate("/admin/users");
-                //     }, 2000);
-                // } catch (error) {
-                //     console.log(error);
-                // }
             }
 
         }
+
 
     };
 
@@ -192,16 +193,21 @@ const UserForm = () => {
                         <Form.Label className="w-25 mb-0 text-light">Contraseña</Form.Label>
                         <InputGroup hasValidation className="w-75">
                             <Form.Control
+                                type={showPassword ? "text" : "password"}
                                 name="password"
                                 onChange={handleOnChange}
-                                type="password"
-                                placeholder={id ? "Modifica contraseña (si es necesario)" : "Tu contraseña"}
+                                placeholder={id ? "Actualiza contraseña (opcional)" : "Tu contraseña"}
                                 required={!id}
                                 autoComplete="current-password"
+                                isInvalid={passwordFeedback !== ""}
                                 className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
                             />
+                            <Button variant="outline-light" onClick={() => setShowPassword(!showPassword)} className="ms-2">
+                                {/* {showPassword ? "Ocultar" : "Mostrar"} */}
+                                <i className="bi bi-eye-fill"></i>
+                            </Button>
                             <Form.Control.Feedback type="invalid" className="text-danger">
-                                Por favor ingresa una contraseña válida.
+                                {passwordFeedback || "Por favor ingresa una contraseña válida."}
                             </Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>

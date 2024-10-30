@@ -152,7 +152,9 @@ const RegisterStudentForm = () => {
                                 name="year"
                                 value={formData.year}
                                 onChange={handleOnChange}
-                                type="text"
+                                type="number"
+                                max={new Date().getFullYear() + 1}
+                                min={new Date().getFullYear()}
                                 placeholder="Escribe un año"
                                 required
                                 className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"

@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 const TeacherGroup = () => {
     const [subjectTeachers, setSubjectTeachers] = useState([]);
+    const [filteredGroups, setFilteredGroups] = useState({});
+
 
 
 
@@ -16,53 +18,50 @@ const TeacherGroup = () => {
                 const data = await axiosClient.get("/SubjectTeachers");
                 console.log(data.data);
                 setSubjectTeachers(data.data);
-
+                const groupedData = {};
+                for (let year = 5; year <= 11; year++) {
+                    groupedData[year] = data.data.filter(teacher =>
+                        teacher.groupYear.group.groupName.startsWith(year.toString())
+                    );
+                }
+                setFilteredGroups(groupedData);
             } catch (error) {
                 console.log(error);
             }
         }
-
         getGroupYear();
+
     }, []);
 
-    const listSubjectTeacher = subjectTeachers.map(subjecTeacher => (
-        <Link to={`/teacher/groups/${subjecTeacher.id}`} className="d-block" key={subjecTeacher.id}>{subjecTeacher.groupYear.year}</Link>
-    ));
+    console.log(subjectTeachers);
+
+
+    const renderGroupList = (year) => (
+        filteredGroups[year]?.map(teacher => (
+            <Link
+                id={teacher.groupYear.group.groupName}
+                to={`/teacher/groups/${teacher.id}`}
+                className="d-block"
+                key={teacher.id}
+            >
+                {teacher.groupYear.year} - {teacher.subject.subjectname} - {teacher.groupYear.group.groupName}
+            </Link>
+        ))
+    );
 
     return (
         <>
             <h1 className="text-center text-light mt-4">Mis grupos</h1>
-
             <div className="d-flex justify-content-center mt-5">
                 <Accordion className="w-50 modern-accordion">
-                    <Accordion.Item eventKey="0">
-                        <Accordion.Header>Sexto</Accordion.Header>
-                        <Accordion.Body>
-                            {listSubjectTeacher}
-                        </Accordion.Body>
-                    </Accordion.Item>
-
-                    <Accordion.Item eventKey="1">
-                        <Accordion.Header>Septimo</Accordion.Header>
-                        <Accordion.Body>
-                            {listSubjectTeacher}
-                        </Accordion.Body>
-                    </Accordion.Item>
-
-                    <Accordion.Item eventKey="2">
-                        <Accordion.Header>Octavo</Accordion.Header>
-                        <Accordion.Body>
-                            {listSubjectTeacher}
-                        </Accordion.Body>
-                    </Accordion.Item>
-
-                    <Accordion.Item eventKey="3">
-                        <Accordion.Header>Noveno</Accordion.Header>
-                        <Accordion.Body>
-                            {listSubjectTeacher}
-                        </Accordion.Body>
-                    </Accordion.Item>
-
+                    {[5, 6, 7, 8, 9, 10, 11].map(year => (
+                        <Accordion.Item eventKey={year.toString()} key={year}>
+                            <Accordion.Header>{["Quinto", "Sexto", "Septimo", "Octavo", "Noveno", "Decimo", "Once"][year - 5]}</Accordion.Header>
+                            <Accordion.Body>
+                                {renderGroupList(year)}
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    ))}
                 </Accordion>
             </div>
         </>

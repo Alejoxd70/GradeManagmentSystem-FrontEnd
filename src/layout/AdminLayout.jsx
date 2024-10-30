@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import SideNavBar from "../components/SideNavBar";
+import Footer from "../components/Footer";
 
 
 
@@ -22,7 +23,7 @@ const AdminLayout = () => {
                         <Outlet />
                     </Container>
                 </Container>
-            {/* ) : <Navigate to={"/"} />} */}
+                <Footer nameClass={"footer"}/>
         </>
     );
 }
