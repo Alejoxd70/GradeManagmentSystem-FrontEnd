@@ -148,15 +148,17 @@ const GradeForm = () => {
                     <h2 className="text-center mb-4 text-light">{id ? "Modificar" : "Crear"} una calificacion </h2>
 
                     <Form.Group className="d-flex justify-content-between align-items-center mb-3" controlId="controlValue">
-                        <Form.Label className="w-25 mb-0 text-light">Notas</Form.Label>
+                        <Form.Label className="w-25 mb-0 text-light">Nota</Form.Label>
                         <InputGroup hasValidation className="w-75">
                             <Form.Control
                                 name="value"
                                 value={formData.value}
                                 onChange={handleOnChange}
-                                type="text"
+                                type="number"
                                 placeholder="Notas"
                                 required
+                                max={50}
+                                min={0}
                                 //autoComplete="username"
                                 className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
                             />
@@ -192,7 +194,7 @@ const GradeForm = () => {
 
 
                     <Form.Group className="d-flex justify-content-between align-items-center mb-3" controlId="controlStudent">
-                        <Form.Label className="w-25 mb-0 text-light">Estudiantes</Form.Label>
+                        <Form.Label className="w-25 mb-0 text-light">Estudiante</Form.Label>
                         <InputGroup hasValidation className="w-75">
                             <Form.Select
                                 name="studentId"

@@ -74,15 +74,15 @@ const HomePage = () => {
 				<Container id="about">
 					<Row>
 						<Col md={6}>
-							<h2 className="text-center">Mision</h2>
+							<h2 className="text-center">Misión</h2>
 							<p className="lead text-center">
 								La Institución Educativa Departamental Pío XII Técnico en Turismo del municipio de Guatavita,Cundinamarca, forma integralmente a todos sus estudiantes, promoviendo las habilidades del sigloXXI, el desarrollo del pensamiento y la autonomía, proporcionándoles herramientas idóneas parasu crecimiento académico y humano. Igualmente, potencializa la formación en competenciascomunicativas en el idioma inglés y la formación técnica en turismo con especialidad en CocinaBásica, a través del fortalecimiento del proyecto de vida.
 							</p>
 						</Col>
 						<Col md={6}>
-							<h2 className="text-center">Vision</h2>
+							<h2 className="text-center">Visión</h2>
 							<p className="lead text-center">
-							En el año 2024, la Institución Educativa Departamental Pío XII Técnico en Turismo del municipiode Guatavita, Cundinamarca, será reconocida en el ámbito provincial y departamental como unainstitución de calidad educativa. Esto se logrará gracias a su formación técnica con especialidaden Cocina Básica, al programa educación formal para adultos, al programa de transición al bilingüismo (inglés) “Learning More Together” y al desarrollo de habilidades del siglo XXI. Estoscomponentes contribuirán a la innovación y competitividad en el mundo laboral, social yambiental
+							En el año 2024, la Institución Educativa Departamental Pío XII Técnico en Turismo del municipiode Guatavita, Cundinamarca, será reconocida en el ámbito provincial y departamental como unainstitución de calidad educativa. Esto se logrará gracias a su formación técnica con especialidaden Cocina Básica, al programa educación formal para adultos, al programa de transición al bilingüismo (inglés) “Learning More Together” y al desarrollo de habilidades del siglo XXI. Estoscomponentes contribuirán a la innovación y competitividad en el mundo laboral, social y ambiental
 							</p>
 						</Col>
 					</Row>

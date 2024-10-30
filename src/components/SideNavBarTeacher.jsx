@@ -9,7 +9,7 @@ const SideNavBarTeacher = () => {
     return (
         <>
             <Nav variant="pills" defaultActiveKey="homepage" className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark nav nav-pills mb-auto vh-100 justify-content-between">
-                <div className="sidebar d-flex flex-column justify-content-between">
+                <div className="sidebar sidebar d-flex flex-column justify-content-between">
                     <div>
                         <Nav.Item className="nav-item">
                             <Nav.Link className="nav-link text-white" eventKey="homepage" as={Link} to={"/teacher/homepage"}><i className="bi bi-collection mx-2"></i>Pagina Principal</Nav.Link>

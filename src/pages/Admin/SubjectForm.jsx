@@ -21,7 +21,7 @@ const SubjectForm = () => {
         description: "",
     });
 
-    // Fetch user if edit mode
+    // Fetch subject if edit mode
     useEffect(() => {
         if (id) {
             try {
@@ -41,26 +41,7 @@ const SubjectForm = () => {
         }
     }, [id]);
 
-    /*Fetch userTypes
-    useEffect(() => {
-        const getUserTypes = async () => {
-            try {
-                const { data } = await axiosClient.get("/UserTypes");
-                setUserTypes(data);
-                console.log(data);
-
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        getUserTypes();
-    }, []);
-
-    console.log(userTypes);
-
-    const listUserTypes = userTypes.map(userType => (
-        <option key={userType.id} value={userType.id}>{userType.userTypeName}</option>
-    ));*/
+    
 
     const handleOnChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -128,7 +109,7 @@ const SubjectForm = () => {
                         <Form.Label className="w-25 mb-0 text-light">Materia</Form.Label>
                         <InputGroup hasValidation className="w-75">
                             <Form.Control
-                                name="subjectname"
+                                name="name"
                                 value={formData.name}
                                 onChange={handleOnChange}
                                 type="text"

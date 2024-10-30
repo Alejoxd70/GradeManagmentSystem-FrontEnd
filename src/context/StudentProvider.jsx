@@ -20,7 +20,11 @@ const StudentProvider = ({ children }) => {
     if (loading) return "loading"
 
     return (
-        <StudentContext.Provider>
+        <StudentContext.Provider 
+            value={{
+                loading,
+            }}
+        >
             {children}
         </StudentContext.Provider>
     )

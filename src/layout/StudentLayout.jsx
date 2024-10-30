@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import SideNavBarStudent from "../components/SideNavBarStudent";
+import Footer from "../components/Footer";
 
 
 const StudentLayout = () => {
@@ -13,6 +14,7 @@ const StudentLayout = () => {
                         <Outlet/>
                     </Container>
             </Container>
+            <Footer nameClass={"footer"}/>
         </>
     );
 }

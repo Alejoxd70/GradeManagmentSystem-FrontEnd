@@ -169,6 +169,8 @@ const FormAssignmentTeacher = () => {
                                 value={formData.date}
                                 onChange={handleOnChange}
                                 type="date"
+                                min={new Date().toISOString().split("T")[0]}
+                                max={`${new Date().getFullYear()}-12-31`}
                                 placeholder="Seleccione una fecha"
                                 required
                                 className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"

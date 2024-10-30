@@ -9,7 +9,6 @@ import ForgotPassword from './pages/ForgotPassword';
 import LoginLayout from './layout/LoginLayout';
 import Group from './pages/Admin/Group';
 import AdminLayout from './layout/AdminLayout';
-import Footer from './components/Footer';
 import Assignments from "./pages/Admin/Assignments"
 import RegisterStudent from "./pages/Admin/RegisterStudent"
 import RegisterTeacher from "./pages/Admin/RegisterTeacher"
@@ -34,8 +33,6 @@ import ListAssigments from './pages/teacher/listAssignments.jsx';
 import FormAssignmentTeacher from './pages/teacher/FormAssignmentTeacher.jsx';
 import TeacherGrade from './pages/teacher/TeacherGrade.jsx';
 import TeacherGradeForm from './pages/teacher/TeacherGradeForm.jsx';
-
-import StudentProfile from './pages/student/StudentProfile.jsx';
 
 import SubjectStudent from './pages/student/SubjectStudent';
 import AssigmentStudent from './pages/student/AssigmentStudent';
@@ -115,7 +112,6 @@ function App() {
                             <Route path='/student/groups' element={<StudentGroup/>}/>
                             <Route path='/student/profile' element={<Profile/>}/>
                             <Route path='/student/reports' element={<Report/>}/>
-                            <Route path='/student/profile' element={<StudentProfile/>}/>
                             {/*subjectstudent*/}
                             <Route path='/student/subjects' element={<SubjectStudent/>}/>
                             {/*assigmentstudent*/}
@@ -143,7 +139,6 @@ function App() {
                         </Route>
                         
                     </Routes>
-                    <Footer/>
                 </AuthProvider>
 
             </BrowserRouter>
