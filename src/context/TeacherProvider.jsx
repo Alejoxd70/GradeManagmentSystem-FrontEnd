@@ -4,11 +4,11 @@ import UseAuth from "../hooks/UseAuth";
 const TeacherContext = createContext();
 
 // eslint-disable-next-line react/prop-types
-const TeacherProvider = ({children}) => {
-    const {isAuthenticated, roleType, navigate, loading} = UseAuth();
+const TeacherProvider = ({ children }) => {
+    const { isAuthenticated, roleType, navigate, loading } = UseAuth();
 
     useEffect(() => {
-        if(!loading) {
+        if (!loading) {
             if (!isAuthenticated || roleType === "Estudiante") {
                 navigate("/")
             }
@@ -20,7 +20,11 @@ const TeacherProvider = ({children}) => {
 
 
     return (
-        <TeacherContext.Provider>
+        <TeacherContext.Provider
+            value={{
+                loading,
+            }}
+        >
             {children}
         </TeacherContext.Provider>
     )

@@ -43,7 +43,7 @@ const GroupForm = () => {
         console.log(formData);
 
     }
-    
+
     const handleSubmit = async e => {
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
@@ -62,7 +62,7 @@ const GroupForm = () => {
                     const queryString = new URLSearchParams(formData).toString();
                     const url = `/Group?${queryString}`
 
-                    const {data}  = await axiosClient.post(url)
+                    const { data } = await axiosClient.post(url)
                     console.log(data)
                     setMessage({ text: data, variant: "success" })
                     setTimeout(() => {
@@ -94,16 +94,17 @@ const GroupForm = () => {
 
     return (
         <>
-        <div className="col-md-10 shadow-lg p-5 mb-5 bg-dark text-light rounded-5 w-50 mx-auto mt-4">
-              <Form noValidate validated={validated} onSubmit={handleSubmit} className="bg-dark p-3 rounded-4" method="post">
+            <div className="col-md-10 shadow-lg p-5 mb-5 bg-dark text-light rounded-5 w-50 mx-auto mt-4">
+                <Form noValidate validated={validated} onSubmit={handleSubmit} className="bg-dark p-3 rounded-4" method="post">
                     <h1 className="text-center mb-4 text-light">{id ? "Actualizar" : "Crear"} un Grupo </h1>
 
                     <Form.Group className="d-flex justify-content-between align-items-center mb-3" controlId="controlName">
-                        <Form.Label className="w-25 mb-0 text-light">Nombre del grupo</Form.Label>
+                        <Form.Label className="w-25 mb-0 text-light">Grupo</Form.Label>
                         <InputGroup hasValidation className="w-75">
                             <Form.Control
                                 name="name"
-                                type="text"
+                                type="number"
+                                max={1105}
                                 placeholder="Ingresa el nombre del grupo"
                                 required
                                 className="border-0 bg-secondary text-light p-3 rounded-3 bg-opacity-50"
@@ -117,12 +118,12 @@ const GroupForm = () => {
                     </Form.Group>
 
                     <div className="d-flex justify-content-between align-items-end mt-4">
-                        <Button 
-                            type="submit" 
+                        <Button
+                            type="submit"
                             className="btn btn-light px-4 py-2 rounded-pill shadow"
                             disabled={isSummiting}
                         >
-                            
+
                             {id ? "Actualizar" : "Crear"} grupo
                         </Button>
                         <Link className="text-light link-underline-opacity-0 link-underline-opacity-100-hover" to="/admin/groups">

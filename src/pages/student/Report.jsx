@@ -4,6 +4,7 @@ import { Button, Table, Tabs, Tab, ListGroup } from "react-bootstrap";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import UseAuth from "../../hooks/UseAuth";
+import { Link } from "react-router-dom";
 
 
 const Report = () => {
@@ -73,9 +74,7 @@ const Report = () => {
         printWindow.print();
     };
 
-    const handleExit = () => {
-        window.location.href = "/student/groups";
-    };
+    
     //----------------------------------------Parte Periodo----------------------------------------------------//
     const listSubjects = subjects.map(subject => (
         <tr key={subject.id} >
@@ -117,13 +116,10 @@ const Report = () => {
             {/*----------------------------------------------------------------------------------------------------*/}
             {/* Controles de acción */}
             <div className="mb-3">
-                <Button variant="primary" onClick={handleDownload} className="me-2">
-                    Descargar PDF
-                </Button>
                 <Button variant="secondary" onClick={handlePrint} className="me-2">
                     Imprimir
                 </Button>
-                <Button variant="danger" onClick={handleExit}>
+                <Button variant="danger" as={Link} to={"/student/groups"}>
                     Volver a Pagina Principal
                 </Button>
             </div>
@@ -169,6 +165,11 @@ const Report = () => {
 
                 {/* Pestaña de Periodo */}
                 <Tab eventKey="groupYear" title="Periodo">
+                    <div className="mb-3 d-flex justify-content-end">
+                        <Button variant="primary" onClick={handleDownload} className="me-2">
+                            Descargar PDF
+                        </Button>
+                    </div>
                     <div id="groupYear">
                         <Table striped bordered hover responsive="sm" variant="dark">
                             <thead>

@@ -154,7 +154,9 @@ const TeacherGradeForm = () => {
                                 name="value"
                                 value={formData.value}
                                 onChange={handleOnChange}
-                                type="text"
+                                type="number"
+                                min={0}
+                                max={50}
                                 placeholder="Notas"
                                 required
                                 //autoComplete="username"
